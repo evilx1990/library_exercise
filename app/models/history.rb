@@ -2,7 +2,6 @@
 
 class History
   include Mongoid::Document
-  include Mongoid::Timestamps
 
   field :taken_in,    type: Time,   default: ->{ Time.now }
   field :returned_id, type: Time
