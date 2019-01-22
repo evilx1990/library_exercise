@@ -8,7 +8,7 @@ gem 'devise'
 gem 'mongoid', '~> 7.0'
 gem 'bootstrap', '~> 4.2.1'
 gem 'haml-rails', '~> 1.0'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mini_magick'
 gem 'kaminari'
 
