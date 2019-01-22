@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.0'
 
+# Added gems
+gem 'devise'
 gem 'mongoid', '~> 7.0'
 gem 'bootstrap', '~> 4.2.1'
 gem 'haml-rails', '~> 1.0'
