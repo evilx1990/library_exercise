@@ -34,7 +34,7 @@ header {
 }
 
 #content, #sidebar {
-  transition: all 0.5s;
+  transition: all 0.3s;
 }
 
 #content {
@@ -56,10 +56,10 @@ header {
   display: block;
 }
 
-.toggler-bar {
+.switched-bar {
   width: 40% !important;
 }
 
-.toggler-content {
+.switched-content {
   left: -40% !important;
 }
