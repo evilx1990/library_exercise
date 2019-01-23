@@ -1,0 +1,65 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+*/
+@import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+body {
+  font-family: 'Oswald', sans-serif;
+}
+
+header {
+  height: 58px;
+  width: 100%;
+  background: #1E1F20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  margin: 0 20px;
+}
+
+#content, #sidebar {
+  transition: all 0.5s;
+}
+
+#content {
+  position: relative;
+  left: 0;
+}
+
+#sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100%;
+  background: black;
+  overflow: hidden;
+}
+
+.sidebar-link {
+  display: block;
+}
+
+.toggler-bar {
+  width: 40% !important;
+}
+
+.toggler-content {
+  left: -40% !important;
+}

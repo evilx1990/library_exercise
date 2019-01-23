@@ -23,4 +23,7 @@ class User
   has_many  :votes
   has_many  :comments
   has_many  :history, class_name: 'History'
+
+  validates :first_name,  presence: true
+  validates :last_name,   presence: true
 end
