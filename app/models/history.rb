@@ -4,7 +4,7 @@ class History
   include Mongoid::Document
 
   field :taken_in,    type: Time,   default: ->{ Time.now }
-  field :returned_id, type: Time
+  field :returned_in, type: Time
 
   belongs_to  :user
   belongs_to  :book, counter_cache: :takes_count

@@ -19,8 +19,8 @@ class User
   ## Rememberable
   field :remember_created_at,     type: Time
 
-  has_many  :books
+  has_many  :books,   dependent: :destroy
   has_many  :votes
   has_many  :comments
-  has_many  :histories
+  has_many  :history, class_name: 'History'
 end

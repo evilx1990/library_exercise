@@ -2,11 +2,14 @@
 
 class Comment
   include Mongoid::Document
+  include Mongoid::Timestamps
 
-  field :comment, type: String
+  field :message, type: String
 
   belongs_to  :user
   belongs_to  :book
 
   index({ user: 1, book: 1 })
+
+  validates :message, presence: true
 end
