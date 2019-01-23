@@ -7,7 +7,7 @@ class History
   field :returned_in, type: Time
 
   belongs_to  :user
-  belongs_to  :book, counter_cache: :takes_count
+  belongs_to  :book, counter_cache: :taken_count
 
   index({ user: 1, book: 1 })
 end
