@@ -15,13 +15,14 @@
         %h1.text-white
           book library
         =image_tag('user_menu_icon.png', alt: 'user-menu-icon', class: 'icon toggle')
-      %p.notice
-        =notice
-      %p.alert
-        =alert
+      -#%p.notice
+      -#  =notice
+      -#%p.alert
+      -#  =alert
       =yield
     #sidebar
       -if user_signed_in?
+        =link_to('home', root_path, class: 'sidebar-link')
         =link_to('profile', edit_user_registration_path, class: 'sidebar-link')
         =link_to('log out', destroy_user_session_path, class: 'sidebar-link', method: :delete)
       -else

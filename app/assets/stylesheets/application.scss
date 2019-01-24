@@ -11,17 +11,25 @@
  * It is generally better to create a new file per style scope.
  *
 */
-@import "bootstrap";
 @import url('https://fonts.googleapis.com/css?family=Oswald');
+@import "bootstrap";
+@import "devise";
+
+.row {
+  margin: 0;
+}
 
 body {
+  height: 100vh;
   font-family: 'Oswald', sans-serif;
+
 }
 
 header {
   height: 58px;
   width: 100%;
   background: #1E1F20;
+  border-right: 2px solid #1E1F20;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -35,31 +43,46 @@ header {
 
 #content, #sidebar {
   transition: all 0.3s;
+  min-height: 100%;
 }
 
 #content {
   position: relative;
+  height: 1px; // for height: 100% in children div
   left: 0;
 }
 
 #sidebar {
   position: fixed;
   top: 0;
-  right: 0;
-  width: 0;
-  height: 100%;
-  background: black;
+  right: -30%;
+  width: 30%;
+  background: #1E1F20;
   overflow: hidden;
+  padding-top: 28px;
 }
 
 .sidebar-link {
+  font-size: x-large;
+  color: white;
   display: block;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+.sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  text-decoration: none;
 }
 
 .switched-bar {
-  width: 40% !important;
+  right: 0 !important;
 }
 
 .switched-content {
-  left: -40% !important;
+  left: -30% !important;
+  right: 30% !important;
 }
