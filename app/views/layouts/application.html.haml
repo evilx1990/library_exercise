@@ -11,7 +11,7 @@
   %body
     #content
       %header
-        =image_tag('app-icon.png', alt: 'app-icon', class: 'icon')
+        =link_to(image_tag('app-icon.png', alt: 'app-icon', class: 'icon'), root_path)
         %h1.text-white
           book library
         =image_tag('user_menu_icon.png', alt: 'user-menu-icon', class: 'icon toggle')
@@ -24,6 +24,7 @@
       -if user_signed_in?
         =link_to('home', root_path, class: 'sidebar-link')
         =link_to('profile', edit_user_registration_path, class: 'sidebar-link')
+        %hr
         =link_to('log out', destroy_user_session_path, class: 'sidebar-link', method: :delete)
       -else
         =link_to('sign in', new_user_session_path, class: 'sidebar-link')
