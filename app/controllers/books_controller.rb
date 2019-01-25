@@ -5,7 +5,6 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.order_by(created_at: :desc).page(params[:page]).per(20)
-    # TODO хелпер для топа книг
   end
 
   def show
