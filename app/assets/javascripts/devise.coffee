@@ -2,8 +2,9 @@
 
 $(document).on "turbolinks:load", ->
   $("""input[value='Log in'],
-       input[value='Sign up'],
-       input[value='Send me reset password instructions']""").attr('disabled', true)
+    input[value='Sign up'],
+    input[value='Send me reset password instructions'],
+    input[value='Update']""").attr('disabled', true)
 
   switch $("input[type='submit']").val()
     when 'Log in'
@@ -12,8 +13,14 @@ $(document).on "turbolinks:load", ->
         $("input[value='Log in']").attr('disabled', checkFields())
     when 'Sign up'
       # registrations/new
-      $('#user_first_name, #user_last_name, #user_email, #user_password, #user_password_confirmation').on 'keyup', ->
-        $("input[value='Sign up']").attr('disabled', checkFields())
+      $("""#user_first_name, #user_last_name, #user_email,
+        #user_password, #user_password_confirmation""").on 'keyup', ->
+          $("input[value='Sign up']").attr('disabled', checkFields())
+    when 'Update'
+      # registrations/edit
+      $("""#user_first_name, #user_last_name, #user_email,
+        #user_password, #user_password_confirmation, #user_current_password""").on 'keyup', ->
+          $("input[value='Update']").attr('disabled', checkFields())
     when 'Send me reset password instructions'
       # passwords/new
       $('#user_email').on 'keyup', ->
@@ -26,7 +33,8 @@ $(document).on "turbolinks:load", ->
       $('#user_last_name'),
       $('#user_email'),
       $('#user_password'),
-      $('#user_password_confirmation')
+      $('#user_password_confirmation'),
+      $('#user_current_password')
     ]
 
     for i in [0...fields.length]
