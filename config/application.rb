@@ -29,5 +29,14 @@ module LibraryExercise
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.time_zone = 'Kyiv'
+
+    # Disable ActiveJob logs
+    config.active_job.logger = nil
+
+    config.after_initialize do
+      MostPopularUpdateJob.set(wait: 1.minute).perform_later
+    end
   end
 end
