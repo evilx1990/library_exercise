@@ -4,11 +4,8 @@ author:
 Gareth Moore
 description:
 Brain Games for Clever Kids is a fantastic bestselling puzzle book, brimming with memory, word and number workouts for the cleverest of kids!
-
 Including battleships and mind-bending spot the differences to Japanese puzzles including hanjie, kakuro, futoshiki, sudoku and lots more. 
-
 Let the brain games begin!
-
 Other books in the series include:
 9781780553078 Wordsearches for Clever Kids
 9781780553146 Quiz Book for Clever Kids 
@@ -17,4 +14,3 @@ Other books in the series include:
 9781780554723 Brain Gaming for Clever Kids
 9781780555621 Times Tables Games for Clever Kids 
 9781780554730 Word Games for Clever Kids
-

@@ -2,6 +2,5 @@ title:
 Hey Warrior
 author:
 Karen Young
-                                    Norvile Dovidonyte
+Norvile Dovidonyte
 description:
-
