@@ -1,4 +1,4 @@
-#top-books-carousel.carousel.slide{ 'data-interval' => false, 'data-keyboard' => false }
+#top-books-carousel.carousel.slide{ 'data-interval' => '10000', 'data-keyboard' => false }
   .row
     .col-1.m-0.p-0
       .carousel-nav{'data-slide' => 'prev', :href => '#top-books-carousel', :role => 'button'}
@@ -10,6 +10,6 @@
           .carousel-item{ class: index.eql?(0) ? 'active' : '' }
             =render 'book', book: book
     .col-1.m-0.p-0
-      .carousel-nav{"data-slide" => "next", :href => "#top-books-carousel", :role => "button"}
+      .carousel-nav{'data-slide' => 'next', :href => '#top-books-carousel', :role => 'button'}
         %span
           >

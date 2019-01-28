@@ -1,18 +1,33 @@
--# title author status(in/out, check)
 .row
-  .col-4.col-sm-3
+  .col-4.col-sm-3.p-1.d-flex.align-items-center
     =image_tag(book.image.url, alt: 'book-image', class: 'book-image')
   .col-8.col-sm-9.book-description
-    %hr
+    %hr/
     .author
       %small
-        author(s):
-        %br
+        author(s):&nbsp
         =book.author.gsub("\n", '<br/>').html_safe
-    %hr
+    %hr/
     .title
       %small
-        title:
-        %br
-        =book.title
-    %hr
+        title:&nbsp
+        =truncate(book.title, length: 50)
+    %hr/
+    .status
+      %small
+        status:&nbsp
+        =book.status
+        &nbsp | &nbsp
+        read? &nbsp
+        =current_user.read?(book)
+    %hr/
+    .last-reader
+      %small
+        last reader:
+        -if book.history.last.present?
+          =book.history.last.user.first_name
+          &nbsp
+          =book.history.last.user.last_name
+        -else
+          none
+    %hr/

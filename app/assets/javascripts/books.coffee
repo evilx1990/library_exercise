@@ -5,12 +5,12 @@ $(document).on "turbolinks:load", ->
 
 #   Find slide with max height && get him value
     maxHeightImg = $(carouselImages[0]).height()
-    for i in [0...carouselImages.length - 1]
+    for i in [0..carouselImages.length - 1]
       if maxHeightImg < $(carouselImages[i + 1]).height()
         maxHeightImg = $(carouselImages[i + 1]).height()
 
     maxHeightDesc = $(carouselDesc[0]).height()
-    for i in [0...carouselDesc.length - 1]
+    for i in [0..carouselDesc.length - 1]
       if maxHeightDesc < $(carouselDesc[i + 1]).height()
         maxHeightDesc = $(carouselDesc[i + 1]).height()
 

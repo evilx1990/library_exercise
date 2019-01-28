@@ -26,4 +26,8 @@ class User
 
   validates :first_name,  presence: true
   validates :last_name,   presence: true
+
+  def read?(book)
+    history.where(book: book)&.last&.returned_in.present?
+  end
 end
