@@ -12,7 +12,7 @@ class Book
   field :rating,          type: Float,    default: 0.0
   field :votes_count,     type: Integer,  default: 0
   field :taken_count,     type: Integer,  default: 0
-  field :popularity,      type: Integer,  default: 0  # sum votes & takes
+  field :popularity,      type: Integer,  default: 0  # sum votes & takes(auto-update)
 
   belongs_to  :user
   has_many    :votes,     dependent: :destroy
