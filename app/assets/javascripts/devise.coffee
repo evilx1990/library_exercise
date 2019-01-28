@@ -1,6 +1,6 @@
 # disable button if any field is empty
 
-$(document).on "turbolinks:load", ->
+$(document).on("turbolinks:load", ->
   $("""input[value='Log in'],
     input[value='Sign up'],
     input[value='Send me reset password instructions'],
@@ -26,7 +26,6 @@ $(document).on "turbolinks:load", ->
       $('#user_email').on 'keyup', ->
         $("input[value='Send me reset password instructions']").attr('disabled', checkFields())
 
-
   checkFields = () ->
     fields = [
       $('#user_first_name'),
@@ -41,3 +40,4 @@ $(document).on "turbolinks:load", ->
       if fields[i].val() == ''
         return true
     false
+)

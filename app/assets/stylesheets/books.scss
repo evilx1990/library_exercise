@@ -18,23 +18,31 @@
   justify-content: center;
 }
 
-.book-image, .book-description {
-  width: 100%;
+.carousel-content {
+  position: relative;
+  width: 1px;
+  min-width: 100%;
 }
 
-.carousel-item {
-  opacity: 0;
-  visibility: hidden;
-  display: flex !important;
+.carousel-content hr {
+  margin: 0;
+}
+
+.carousel-point {
+  display: flex;
   align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  opacity: 0;
+  transition: 1s;
 }
 
 .active {
-  visibility: visible;
   opacity: 1;
-  transition: opacity 0.5s;
 }
 
-.carousel-inner hr {
-  margin: 0;
+.book-image, .book-description {
+  width: 100%;
 }
