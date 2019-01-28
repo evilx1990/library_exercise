@@ -1,27 +1,38 @@
 # frozen_string_literal: true
 
 namespace :app do
-  desc 'Filling database after first run application'
-  task initial_db: :environment do
-    Rake::Task['db:mongoid:drop'].invoke
+  desc 'Create librarian account'
+  task create_librarian: :environment do
+    login = "lib_#{SecureRandom.hex(3)}@library.loc"
+    password = SecureRandom.hex(3)
+    lib_count = User.where(librarian: true).count
 
-    # create librarian account
     User.create!(
-        first_name: 'admin',
-        last_name: 'admin',
-        email: 'librarian1@library.loc',
-        password: 'Librarian1',
+        first_name: "librarian_#{lib_count}",
+        last_name: '_',
+        email: login,
+        password: password,
         librarian: true
     )
 
+    print_login(login, password)
+
+  rescue
+    puts $!.inspect
+  end
+
+  desc 'Filling application database'
+  task initial_db: :environment do
     Dir[Rails.root + "lib/assets/Books/*.jpg"].each(&method(:add_book_to_db))
 
   rescue
     puts $!.inspect
   end
 
+  # task functions
+
   def add_book_to_db(file)
-    File.open(file + '.txt', 'r') { |f| @lines = f.readlines }
+    File.open("#{file}.txt", 'r') { |f| @lines = f.readlines }
 
     # select indexes headlines
     @title_index = @lines.index("title:\n")
@@ -46,5 +57,14 @@ namespace :app do
     puts "Book \"#{@title.chop}\" successfully added to database"
 
     @image.close
+  end
+
+  def print_login(email, password)
+    puts '-' * 50
+    puts "librarian account:\n\n"
+    puts "login: #{email}"
+    puts "password: #{password}\n\n"
+    puts 'Please change password after first login'
+    puts '-' * 50
   end
 end

@@ -9,18 +9,14 @@
     =stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     =javascript_include_tag 'application', 'data-turbolinks-track':  'reload'
   %body
-    #content
-      %header
-        =link_to(image_tag('app-icon.png', alt: 'app-icon', class: 'icon'), root_path)
-        %h1.text-white
-          book library
-        =image_tag('user_menu_icon.png', alt: 'user-menu-icon', class: 'icon toggle')
-      -#%p.notice
-      -#  =notice
-      -#%p.alert
-      -#  =alert
+    %nav
+      =link_to(image_tag('app-icon.png', alt: 'app-icon', class: 'icon'), root_path)
+      %h1.text-white
+        book library
+      =image_tag('user_menu_icon.png', alt: 'user-menu-icon', class: 'icon toggle')
+    %article
       =yield
-    #sidebar
+    %aside
       -if user_signed_in?
         =link_to('home', root_path, class: 'sidebar-link')
         =link_to('profile', edit_user_registration_path, class: 'sidebar-link')
