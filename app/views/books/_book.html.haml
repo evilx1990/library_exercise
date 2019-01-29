@@ -1,4 +1,4 @@
-.row
+.row.book
   .col-4.col-sm-3.p-1.d-flex.align-items-center
     =image_tag(book.image.url, alt: 'book-image', class: 'book-image')
   .col-8.col-sm-9.book-description
@@ -11,7 +11,7 @@
     .title
       %small
         title:&nbsp
-        =truncate(book.title, length: 50)
+        =truncate(book.title, length: 100)
     %hr/
     .status
       %small
@@ -31,3 +31,4 @@
         -else
           none
     %hr/
+

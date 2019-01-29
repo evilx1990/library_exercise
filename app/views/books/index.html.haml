@@ -1,7 +1,18 @@
 .row
   .col-12
-    %h4.most-popular
+    %h4.most-popular-books-text
       most popular books
-    %hr.popular-underline/
+    %hr.underline/
 =render 'carousel'
 %hr/
+.row
+  .col-12
+    %h4.all-books-text
+      all books
+    %hr.underline/
+.row
+  .col-10.offset-1.col-lg-6.offset-lg-3.books
+    =render @books
+.row
+  .col-10.offset-1.col-lg-6.offset-lg-3.mb-5.mt-3
+    =paginate @books, window: 1

@@ -1,10 +1,13 @@
-.most-popular {
+.most-popular-books-text, .all-books-text {
   position: relative;
-  display: inline-block;
   bottom: -11px;
 }
 
-.popular-underline {
+.all-books-text {
+  text-align: right;
+}
+
+.underline {
   margin-top: 0;
   padding: 0;
   border: 0.5px solid black;
@@ -28,7 +31,16 @@
   min-width: 100%;
 }
 
-.carousel-content hr {
+.books {
+  display: flex;
+  flex-direction: column;
+}
+
+.book img {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.book hr {
   margin: 0;
 }
 
