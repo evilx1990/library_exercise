@@ -9,17 +9,17 @@ $(document).on("turbolinks:load", ->
   switch $("input[type='submit']").val()
     when 'Log in'
       # sessions/new
-      $('#user_email, #user_password').on 'keyup', ->
+      $('#user_email, #user_password').on 'input', ->
         $("input[value='Log in']").attr('disabled', checkFields())
     when 'Sign up'
       # registrations/new
       $("""#user_first_name, #user_last_name, #user_email,
-        #user_password, #user_password_confirmation""").on 'keyup', ->
+        #user_password, #user_password_confirmation""").on 'input', ->
           $("input[value='Sign up']").attr('disabled', checkFields())
     when 'Update'
       # registrations/edit
       $("""#user_first_name, #user_last_name, #user_email,
-        #user_password, #user_password_confirmation, #user_current_password""").on 'keyup', ->
+        #user_password, #user_password_confirmation, #user_current_password""").on 'input', ->
           $("input[value='Update']").attr('disabled', checkFields())
     when 'Send me reset password instructions'
       # passwords/new
