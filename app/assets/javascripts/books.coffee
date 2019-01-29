@@ -27,7 +27,7 @@ $(window).on("load turbolinks:load resize", ->
     $(i).height(max)
 )
 
-$(window).on("load turbolinks:load", ->
+$(document).on("load turbolinks:load", ->
   # Carousel navigation buttons
   currentPoint = ->
     for i in [0...points.length]
