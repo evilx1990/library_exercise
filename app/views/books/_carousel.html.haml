@@ -1,29 +1,14 @@
--##top-books-carousel.carousel.slide{ 'data-interval' => '10000', 'data-keyboard' => false }
--#  .row
--#    .col-1.m-0.p-0
--#      .carousel-nav{'data-slide' => 'prev', :href => '#top-books-carousel', :role => 'button'}
--#        %span
--#          <
--#    .col-10.m-0.p-0
--#      .carousel-inner
--#        -most_popular.each_with_index do |book, index|
--#          .carousel-item{ class: index.eql?(0) ? 'active' : '' }
--#            =render 'book', book: book
--#    .col-1.m-0.p-0
--#      .carousel-nav{'data-slide' => 'next', :href => '#top-books-carousel', :role => 'button'}
--#        %span
--#          >
-
-.col-1.m-0.p-0
-  .carousel-nav.left
-    %span
-      <
-.col-10.m-0.p-0
-  .carousel-content
-    -most_popular.each_with_index do |book, index|
-      .carousel-point{ class: index.eql?(0) ? 'active' : '' }
-        =render 'book', book: book
-.col-1.m-0.p-0
-  .carousel-nav.right
-    %span
-      >
+.row#carousel
+  .col-1.m-0.p-0
+    .carousel-nav.left
+      %span
+        <
+  .col-10.m-0.p-0
+    .carousel-content
+      -most_popular.each_with_index do |book, index|
+        .carousel-point{ class: index.eql?(0) ? 'active' : '' }
+          =render 'book', book: book
+  .col-1.m-0.p-0
+    .carousel-nav.right
+      %span
+        >

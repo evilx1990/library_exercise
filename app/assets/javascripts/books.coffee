@@ -37,15 +37,45 @@ $(document).on("turbolinks:load", ->
   points = document.querySelectorAll('.carousel-point')
   current = currentPoint()
 
+  right = ->
+    requestAnimationFrame(->
+      $(".right").css("pointer-events", "none")
+      $(points[current]).removeClass('active')
+      $(points[current++]).on('transitionend', ->
+        current = if current >= points.length then 0 else current
+        $(points[current]).addClass('active')
+        $(points[current]).on('transitionend', ->
+          $(".right").css("pointer-events", "auto")
+        )
+      )
+    )
+
+  left = ->
+    requestAnimationFrame(->
+      $(".left").css("pointer-events", "none")
+      $(points[current]).removeClass('active')
+      $(points[current--]).on('transitionend', ->
+        current = if current < 0 then points.length - 1 else current
+        $(points[current]).addClass('active')
+        $(points[current]).on('transitionend', ->
+          $(".left").css("pointer-events", "auto")
+        )
+      )
+    )
+
   $('.right').on('click', ->
-    $(points[current++]).removeClass('active')
-    current = if current >= points.length then 0 else current
-    $(points[current]).addClass('active')
+    right()
   )
 
   $('.left').on('click', ->
-    $(points[current--]).removeClass('active')
-    current = if current < 0 then points.length - 1 else current
-    $(points[current]).addClass('active')
+    left()
+  )
+
+  interval = setInterval(->
+    right()
+  , 7000)
+
+  $('#carousel').on('click', ->
+    clearInterval(interval)
   )
 )
