@@ -30,4 +30,8 @@ class User
   def read?(book)
     history.where(book: book)&.last&.returned_in.present?
   end
+
+  def librarian?
+    librarian
+  end
 end

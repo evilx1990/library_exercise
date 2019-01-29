@@ -1,6 +1,5 @@
-$(document).on("turbolinks:load resize", ->
+$(window).on("turbolinks:load resize", ->
   # Carousel height
-  # setCarouselHeight = ->
   carouselImages =  document.querySelectorAll('.carousel-content .book-image')
   carouselDesc = document.querySelectorAll('.carousel-content .book-description')
 

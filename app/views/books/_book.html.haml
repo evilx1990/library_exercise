@@ -1,8 +1,7 @@
-.row.book
+.book
   .col-4.col-sm-3.p-1.d-flex.align-items-center
     =image_tag(book.image.url, alt: 'book-image', class: 'book-image')
   .col-8.col-sm-9.book-description
-    %hr/
     .author
       %small
         author(s):&nbsp
@@ -11,7 +10,7 @@
     .title
       %small
         title:&nbsp
-        =truncate(book.title, length: 100)
+        =truncate(book.title, length: 50)
     %hr/
     .status
       %small
@@ -30,5 +29,4 @@
           =book.history.last.user.last_name
         -else
           none
-    %hr/
-
+%hr.d-block.mt-3.mb-2/

@@ -31,16 +31,15 @@
   min-width: 100%;
 }
 
-.books {
+.book {
   display: flex;
-  flex-direction: column;
 }
 
 .book img {
   border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.book hr {
+.book-description hr {
   margin: 0;
 }
 
