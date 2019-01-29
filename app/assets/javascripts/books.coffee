@@ -1,4 +1,4 @@
-$(window).on("turbolinks:load resize", ->
+$(window).on("load turbolinks:load resize", ->
   # Carousel height
   carouselImages =  document.querySelectorAll('.carousel-content .book-image')
   carouselDesc = document.querySelectorAll('.carousel-content .book-description')
@@ -25,7 +25,9 @@ $(window).on("turbolinks:load resize", ->
   carouselItems = document.querySelectorAll('.carousel-point')
   for i in carouselItems
     $(i).height(max)
+)
 
+$(window).on("load turbolinks:load", ->
   # Carousel navigation buttons
   currentPoint = ->
     for i in [0...points.length]
@@ -77,4 +79,3 @@ $(window).on("turbolinks:load resize", ->
     clearInterval(interval)
   )
 )
-
