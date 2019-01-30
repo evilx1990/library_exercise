@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   root 'books#index'
 
-  resources :books do
+  resources :books, except: %i[:new] do
     post  :vote,    on: :member
     put   :take,    on: :member
     put   :return,  on: :member

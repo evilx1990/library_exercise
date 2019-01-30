@@ -1,0 +1,10 @@
+#modal-form.modal.fade{ 'aria-hidden' => 'true', 'aria-labelledby' => 'exampleModalCenterTitle', :role => 'dialog', :tabindex => '-1' }
+  .modal-dialog.modal-dialog-centered{ :role => 'document' }
+    .modal-content
+      .modal-header
+        %h5#modal-title.modal-title
+          =action_name.eql?('index') ? 'Add book' : 'Edit book'
+        %button.close{ 'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button'}
+          %span{'aria-hidden' => 'true'} ×
+      .modal-body
+        =render 'form'

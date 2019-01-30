@@ -15,7 +15,7 @@
       .col-6
         =link_to('Taken history', '#', class: 'btn btn-success d-block')
       .col-6
-        =link_to('Add book', '#', class: 'btn btn-success d-block')
+        =link_to('Add book', '#modal-form', 'data-toggle' => 'modal', class: 'btn btn-success d-block')
 
 %section#books
   .row
@@ -32,3 +32,5 @@
   .row
     .col-12
       %hr.underline/
+
+=render 'modal'

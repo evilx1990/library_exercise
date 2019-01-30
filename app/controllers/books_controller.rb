@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class BooksController < ApplicationController
-  before_action :find_book, except: %i[index new create]
+  before_action :find_book, except: %i[index create]
 
   def index
     @books = Book.order_by(created_at: :desc).page(params[:page]).per(20)
+    @book = Book.new
   end
 
   def show
@@ -13,17 +14,11 @@ class BooksController < ApplicationController
     @history =  @book.history.order_by(taken_in: :desc)
   end
 
-  def new
-    @book = Book.new
-  end
-
   def create
     @book = Book.new(book_params)
 
     if @book.save
       redirect_to books_path
-    else
-      render :new
     end
   end
 
