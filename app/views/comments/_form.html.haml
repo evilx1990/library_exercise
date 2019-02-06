@@ -1,0 +1,10 @@
+=form_with model: [@book, @comment], class: 'row' do |form|
+  .col-12.ml-1.mr-1.mb-1
+    =form.text_area :message,
+                    rows: 3,
+                    placeholder: 'write comment...',
+                    class: 'w-100 border'
+  .col-12.ml-1.mr-1
+    =form.submit    'Create comment',
+                    data: { 'disable-with' => 'load...' },
+                    class: 'devise-button w-100 mb-0'

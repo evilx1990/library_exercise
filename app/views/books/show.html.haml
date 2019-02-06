@@ -1,0 +1,28 @@
+%section#book-title
+  %hr/
+  %h3.text-center.ml-1.mr-1
+    =@book.title
+  %hr/
+%section#rating
+  .row.ml-1.mr-1
+    .col-8
+      rating
+    .col-4.text-center
+      =link_to('Take', take_book_path, class: 'btn btn-success pl-4 pr-4')
+%section#book
+  %hr/
+  .row.ml-1.mr-1
+    .col-5.col-md-3.offset-md-2
+      =image_tag(@book.image.url, alt: 'book-image', class: 'w-100')
+    .col-7.col-md-5
+      =truncate(@book.description, length: 150)
+      =link_to('show more',  '#modal-description', 'data-toggle' => 'modal', class: 'd-inline-block')
+  %hr/
+%section#comments
+  =render 'comments/form'
+  %hr/
+  .row
+    .col-12.ml-1.mr-1.mb-1
+      =render @comments
+
+=render 'modal_description'

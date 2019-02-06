@@ -40,11 +40,11 @@
                         class: 'devise-field'
     .actions.col-10.offset-1
       =f.submit 'Update', data: { 'disable-with' => 'load...' }, class: 'devise-button'
-      %h3 Cancel my account
-      %p
-        Unhappy?
-        =button_to('Cancel my account',
-                   registration_path(resource_name),
-                   data: { confirm: 'Are you sure?' },
-                   method: :delete,
-                   class: 'devise-button')
+      -#%h3 Cancel my account
+      -#%p
+      -#  Unhappy?
+      -#  =button_to('Cancel my account',
+      -#             registration_path(resource_name),
+      -#             data: { confirm: 'Are you sure?' },
+      -#             method: :delete,
+      -#             class: 'devise-button')

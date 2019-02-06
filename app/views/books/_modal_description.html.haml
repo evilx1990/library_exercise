@@ -1,0 +1,13 @@
+#modal-description.modal.fade{ 'aria-hidden' => 'true',
+                               'aria-labelledby' => '#modal-description',
+                               :role => 'dialog', :tabindex => '-1' }
+  .modal-dialog{ :role => 'document' }
+    .modal-content
+      .modal-header
+        %h5#exampleModalLongTitle.modal-title Description
+        %button.close{ 'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button' }
+          %span{ 'aria-hidden' => 'true' } ×
+      .modal-body
+        =@book.description
+      .modal-footer
+        %button.btn.btn-success{ 'data-dismiss' => 'modal', :type => 'button' } Close
