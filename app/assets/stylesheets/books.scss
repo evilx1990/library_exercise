@@ -66,3 +66,15 @@
   border: 0;
   border-bottom: 1px solid black;
 }
+
+.settings-icon {
+  width: 24px;
+}
+// setting icon: remove arrow
+.dropdown-toggle::after {
+  content: none !important;
+}
+
+#dropdown-width {
+  min-width: 50px !important;
+}

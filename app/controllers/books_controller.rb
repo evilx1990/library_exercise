@@ -8,11 +8,7 @@ class BooksController < ApplicationController
     @book = Book.new
   end
 
-  def show
-    @comment = @book.comments.build
-    @comments = @book.comments.order_by(created_at: :desc)
-    @history =  @book.history.order_by(taken_in: :desc)
-  end
+  def show; end
 
   def create
     @book = Book.new(book_params)
@@ -50,6 +46,7 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
+    redirect_to books_path if params[:redirect]
   end
 
   private

@@ -1,0 +1,6 @@
+$('#book-manipulation > div > div.col-6.d-flex > a')
+    .replaceWith('<%= link_to('Return',
+                              return_book_path(@book),
+                              method: :put,
+                              remote: true,
+                              class: 'btn btn-sm btn-warning h-100 flex-grow-1 mr-1')%>');

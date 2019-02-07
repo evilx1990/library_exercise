@@ -2,14 +2,33 @@
   %hr/
   %h3.text-center.ml-1.mr-1
     =@book.title
-  %hr/
-%section#rating
+  %hr.mb-2/
+
+%section#book-author
+  %h6.text-center.ml-1.mr-1
+    =@book.author
+  %hr.mt-1/
+
+%section#book-manipulation
   .row.ml-1.mr-1
-    .col-8
+    .col-6
       rating
-    .col-4.text-center
-      =link_to('Take', take_book_path, class: 'btn btn-success pl-4 pr-4')
-%section#book
+    .col-6.d-flex
+      -if @book.status
+        =link_to('Take',
+                 take_book_path(@book),
+                 method: :put,
+                 remote: true,
+                 class: 'btn btn-sm btn-success h-100 flex-grow-1 mr-1')
+      -else
+        =link_to('Return',
+                  return_book_path(@book),
+                  method: :put,
+                  remote: true,
+                  class: 'btn btn-sm btn-warning h-100 flex-grow-1 mr-1')
+      =render 'settings'
+
+%section#book-description
   %hr/
   .row.ml-1.mr-1
     .col-5.col-md-3.offset-md-2
@@ -18,11 +37,28 @@
       =truncate(@book.description, length: 150)
       =link_to('show more',  '#modal-description', 'data-toggle' => 'modal', class: 'd-inline-block')
   %hr/
-%section#comments
+
+%section#book-comments
   =render 'comments/form'
   %hr/
   .row
     .col-12.ml-1.mr-1.mb-1
-      =render @comments
+      =render @book.comments.order_by(created_at: :desc)
+  %hr/
 
+%section#book-history
+  .row
+    .col-12.ml-1.mr-1.mb-1
+      %table.w-100.text-center
+        %tr
+          %th
+            user
+          %th
+            taken in
+          %th
+            returned in
+        =render @book.history.order_by(taken_in: :desc)
+
+-# modal
 =render 'modal_description'
+=render 'modal_book_form'

@@ -1,4 +1,4 @@
-=form_with model: [@book, @comment], class: 'row' do |form|
+=form_with model: [@book, @book.comments.build], class: 'row' do |form|
   .col-12.ml-1.mr-1.mb-1
     =form.text_area :message,
                     rows: 3,

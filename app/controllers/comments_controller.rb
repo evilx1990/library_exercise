@@ -6,7 +6,10 @@ class CommentsController < ApplicationController
 
   def create
     # If comment field empty - submit button disabled
-    @comment = @book.comments.create(comment_params)
+    @comment = @book.comments.new(comment_params)
+    @comment.user = current_user
+
+    redirect_to book_path(@book) if @comment.save
   end
 
   def edit; end

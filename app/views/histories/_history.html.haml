@@ -1,0 +1,13 @@
+%tr
+  %td
+    %small
+      =history.user.last_name
+  %td
+    %small
+      =history.taken_in.strftime('%D')
+  %td
+    %small
+      -if history.returned_in.present?
+        =history.returned_in.strftime('%D')
+      -else
+        

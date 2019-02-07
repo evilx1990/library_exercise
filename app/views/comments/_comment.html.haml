@@ -1,5 +1,11 @@
 .comment
-  =image_tag('commenter.png', alt: 'commenter', class: 'commenter-icon')
-  =comment.user.first_name
-  &nbsp
-  =comment.user.last_name
+  .comment-info
+    .commenter-icon
+      =image_tag('commenter.png', alt: 'commenter', class: 'w-100')
+    .d-inline-block
+      =truncate(comment.user.first_name + ' ' + comment.user.last_name, length: 30)
+    %small.d-inline-block.comment-date
+      =comment.created_at.strftime('%D %R')
+  .comment-body
+    =comment.message.gsub("\n", '<br/>').html_safe
+%hr/
