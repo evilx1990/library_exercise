@@ -1,0 +1,22 @@
+#comments-history {
+  position: relative;
+}
+
+#comments-tab {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: none;
+  border-bottom: none;
+  background-color: gray;
+}
+
+#history-tab {
+  border: 1px solid black;
+
+}
+
+#book-comments, #book-history {
+  position: relative;
+  top: -1px;
+  z-index: -1;
+}

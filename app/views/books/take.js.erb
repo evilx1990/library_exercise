@@ -1,4 +1,4 @@
-$('#book-manipulation > div > div.col-6.d-flex > a')
+$('#book-manipulation > div.row.ml-1.mr-1 > div:nth-child(3) > a')
     .replaceWith('<%= link_to('Return',
                               return_book_path(@book),
                               method: :put,

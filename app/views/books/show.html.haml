@@ -13,11 +13,12 @@
   .row.ml-1.mr-1
     .col-5.offset-0.col-md-4.offset-md-1.col-lg-2.offset-lg-3.d-flex.align-items-center
       %input#range.w-100{ type: :range,
-                    min: 1,
-                    max: 10,
-                    disabled: @book.voted?(current_user),
-                    value: @book.rating }
-    .col-2.d-flex.align-items-center
+                          min: 1,
+                          max: 10,
+                          disabled: @book.voted?(current_user),
+                          value: @book.rating }
+    .col-2.p-0.d-flex.align-items-center
+      =image_tag('rating.png', alt: 'rating', class: 'rating-icon')
       #rating
         -if @book.voted?(current_user)
           =@book.rating
@@ -41,37 +42,46 @@
                   remote: true,
                   class: 'btn btn-sm btn-warning h-100 flex-grow-1 mr-1')
       =render 'settings'
-
+  .col-12.text-center
+    %small
+      for vote use range input and tap to rating
 %section#book-description
   %hr/
   .row.ml-1.mr-1
     .col-5.offset-0.col-md-4.offset-md-1.col-lg-2.offset-lg-3
-      =image_tag(@book.image.url, alt: 'book-image', class: 'w-100')
+      =image_tag(@book.image.url, alt: 'book-image', class: 'w-100 border')
     .col-7.col-md-6.col-lg-4
       =truncate(@book.description, length: 150)
       =link_to('show more',  '#modal-description', 'data-toggle' => 'modal', class: 'd-inline-block')
   %hr/
 
-%section#book-comments
-  =render 'comments/form'
-  %hr/
-  .row
-    .col-12.offset-0.col-md-10.offset-md-1.col-lg-6.offset-lg-3
-      =render @book.comments.order_by(created_at: :desc)
-  %hr/
+%section#comments-history
+  .row.text-center
+    #comments-tab.col-12.offset-0.col-md-5.offset-1.col-lg-3.offset-lg-3
+      comments
+    #history-tab.col-12.col-md-5.col-lg-3
+      history
 
-%section#book-history
-  .row
-    .col-12.offset-0.col-md-10.offset-md-1.col-lg-6.offset-lg-3
-      %table.w-100.text-center
-        %tr
-          %th
-            user
-          %th
-            taken in
-          %th
-            returned in
-        =render @book.history.order_by(taken_in: :desc)
+  #book-comments
+    =render 'comments/form'
+    %hr/
+    .row
+      .col-12.offset-0.col-md-10.offset-md-1.col-lg-6.offset-lg-3
+        =render @book.comments.order_by(created_at: :desc)
+    %hr/
+
+  #book-history
+    .row
+      .col-12.offset-0.col-md-10.offset-md-1.col-lg-6.offset-lg-3
+        %table.w-100.text-center
+          %tr
+            %th
+              user
+            %th
+              taken in
+            %th
+              returned in
+          =render @book.history.order_by(taken_in: :desc)
 
 -# modal
 =render 'modal_description'
