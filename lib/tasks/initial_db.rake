@@ -22,7 +22,7 @@ namespace :app do
   end
 
   desc 'Filling application database'
-  task initial_db: :environment do
+  task fill_db: :environment do
     Dir[Rails.root + "lib/assets/Books/*.jpg"].each(&method(:add_book_to_db))
 
   rescue
@@ -54,7 +54,8 @@ namespace :app do
         description: @description,
         user: User.first
     )
-    puts "Book \"#{@title.chop}\" successfully added to database"
+
+    puts "\"#{@title.chop}\" successfully added to database"
 
     @image.close
   end
@@ -64,7 +65,6 @@ namespace :app do
     puts "librarian account:\n\n"
     puts "login: #{email}"
     puts "password: #{password}\n\n"
-    puts 'Please change password after first login'
     puts '-' * 50
   end
 end

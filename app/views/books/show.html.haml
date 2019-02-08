@@ -11,9 +11,23 @@
 
 %section#book-manipulation
   .row.ml-1.mr-1
-    .col-6
-      rating
-    .col-6.d-flex
+    .col-5.offset-0.col-md-4.offset-md-1.col-lg-2.offset-lg-3.d-flex.align-items-center
+      %input#range.w-100{ type: :range,
+                    min: 1,
+                    max: 10,
+                    disabled: @book.voted?(current_user),
+                    value: @book.rating }
+    .col-2.d-flex.align-items-center
+      #rating
+        -if @book.voted?(current_user)
+          =@book.rating
+        -else
+          =link_to(@book.rating,
+                   vote_book_path(rating: @book.rating.round),
+                   method: :post,
+                   remote: true)
+
+    .col-5.col-md-4.col-lg-2.d-flex
       -if @book.status
         =link_to('Take',
                  take_book_path(@book),
@@ -31,9 +45,9 @@
 %section#book-description
   %hr/
   .row.ml-1.mr-1
-    .col-5.col-md-3.offset-md-2
+    .col-5.offset-0.col-md-4.offset-md-1.col-lg-2.offset-lg-3
       =image_tag(@book.image.url, alt: 'book-image', class: 'w-100')
-    .col-7.col-md-5
+    .col-7.col-md-6.col-lg-4
       =truncate(@book.description, length: 150)
       =link_to('show more',  '#modal-description', 'data-toggle' => 'modal', class: 'd-inline-block')
   %hr/
@@ -42,13 +56,13 @@
   =render 'comments/form'
   %hr/
   .row
-    .col-12.ml-1.mr-1.mb-1
+    .col-12.offset-0.col-md-10.offset-md-1.col-lg-6.offset-lg-3
       =render @book.comments.order_by(created_at: :desc)
   %hr/
 
 %section#book-history
   .row
-    .col-12.ml-1.mr-1.mb-1
+    .col-12.offset-0.col-md-10.offset-md-1.col-lg-6.offset-lg-3
       %table.w-100.text-center
         %tr
           %th

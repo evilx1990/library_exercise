@@ -29,7 +29,7 @@ class BooksController < ApplicationController
   end
 
   def vote
-    @book.votes.create(rating: params[:rating], user: current_user)
+    @book.votes.create!(rating: params[:rating], user: current_user)
     @book.update_rating
   end
 

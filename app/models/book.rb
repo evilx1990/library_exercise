@@ -32,9 +32,14 @@ class Book
     votes.each do |vote|
       sum += vote.rating
       count += 1
+      p sum
     end
 
     self.rating = (sum / count).round(1)
     self.save
+  end
+
+  def voted?(user)
+    votes.find_by(user: user)
   end
 end
