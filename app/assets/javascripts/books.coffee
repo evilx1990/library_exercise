@@ -22,7 +22,7 @@ $(window).on("load turbolinks:load resize", ->
   # Set new height for all points
   $('.carousel-content').height(max)
 
-  carouselItems = document.querySelectorAll('.carousel-point')
+  carouselItems = document.querySelectorAll('.carousel-slide')
   for i in carouselItems
     $(i).height(max)
 
@@ -37,7 +37,7 @@ $(document).on("load turbolinks:load", ->
       if $(points[i]).hasClass('active-slide')
         return i
 
-  points = document.querySelectorAll('.carousel-point')
+  points = document.querySelectorAll('.carousel-slide')
   current = currentPoint()
 
 

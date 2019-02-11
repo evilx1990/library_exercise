@@ -29,7 +29,6 @@
   cursor: pointer;
 }
 
-
 .carousel-content {
   position: relative;
   width: 1px;
@@ -48,7 +47,7 @@
   margin: 0;
 }
 
-.carousel-point {
+.carousel-slide {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,7 +55,7 @@
   top: 0;
   width: 100%;
   opacity: 0;
-  transition: 1s;
+  transition: 0.5s;
 }
 
 .active-slide {
