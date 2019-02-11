@@ -56,9 +56,11 @@
   width: 100%;
   opacity: 0;
   transition: 0.5s;
+  visibility: hidden;
 }
 
 .active-slide {
+  visibility: visible;
   opacity: 1;
 }
 
