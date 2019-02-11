@@ -1,2 +1,4 @@
-$('#range').attr('disabled', true)
 $('#rating').html('<%= @book.rating %>')
+let range = document.getElementById('range')
+range.disabled = true
+range.value = <%= @book.rating %>

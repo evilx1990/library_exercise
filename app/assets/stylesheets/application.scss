@@ -25,7 +25,8 @@
 }
 
 body {
-  height: 100vh;
+  position: relative;
+  min-height: 100vh;
   font-family: 'Oswald', sans-serif;
 }
 
@@ -53,7 +54,6 @@ nav {
 article {
   position: relative;
   width: 100%;
-  height: 1px; // for height: 100% child div
   min-height: 100%;
   left: 0;
 }

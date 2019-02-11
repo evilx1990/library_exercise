@@ -1,22 +1,22 @@
-#comments-history {
-  position: relative;
+.tab {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid black;
+  background-color: lightgray;
+  cursor: pointer;
 }
 
-#comments-tab {
-  border-top: 1px solid black;
-  border-left: 1px solid black;
-  border-right: none;
-  border-bottom: none;
-  background-color: gray;
-}
-
-#history-tab {
+.active-tab {
   border: 1px solid black;
-
+  border-bottom: rgba(0, 0, 0, 0.3);
+  background-color: white;
+  pointer-events: none;
 }
 
 #book-comments, #book-history {
-  position: relative;
-  top: -1px;
-  z-index: -1;
+  margin-top: 30px;
+  display: none;
+}
+
+.active-tab-content {
+  display: block !important;
 }

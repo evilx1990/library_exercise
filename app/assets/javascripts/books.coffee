@@ -34,44 +34,39 @@ $(document).on("load turbolinks:load", ->
   # Carousel navigation buttons
   currentPoint = ->
     for i in [0...points.length]
-      if $(points[i]).hasClass('active')
+      if $(points[i]).hasClass('active-slide')
         return i
 
   points = document.querySelectorAll('.carousel-point')
   current = currentPoint()
 
-  right = ->
+
+  $('.right').on('click', ->
     requestAnimationFrame(->
       $(".right").css("pointer-events", "none")
-      $(points[current]).removeClass('active')
+      $(points[current]).removeClass('active-slide')
       $(points[current++]).on('transitionend', ->
         current = if current >= points.length then 0 else current
-        $(points[current]).addClass('active')
+        $(points[current]).addClass('active-slide')
         $(points[current]).on('transitionend', ->
           $(".right").css("pointer-events", "auto")
         )
       )
     )
+  )
 
-  left = ->
+  $('.left').on('click', ->
     requestAnimationFrame(->
       $(".left").css("pointer-events", "none")
-      $(points[current]).removeClass('active')
+      $(points[current]).removeClass('active-slide')
       $(points[current--]).on('transitionend', ->
         current = if current < 0 then points.length - 1 else current
-        $(points[current]).addClass('active')
+        $(points[current]).addClass('active-slide')
         $(points[current]).on('transitionend', ->
           $(".left").css("pointer-events", "auto")
         )
       )
     )
-
-  $('.right').on('click', ->
-    right()
-  )
-
-  $('.left').on('click', ->
-    left()
   )
 
   interval = setInterval(->

@@ -1,0 +1,15 @@
+-if @book.status
+  =link_to('Take',
+           take_book_path(@book),
+           method: :put,
+           remote: true,
+           class: 'btn btn-sm btn-success h-100 flex-grow-1 mr-1')
+-elsif @book.history.last.user.eql?(current_user)
+  =link_to('Return',
+            return_book_path(@book),
+            method: :put,
+            remote: true,
+            class: 'btn btn-sm btn-warning h-100 flex-grow-1 mr-1')
+-else
+  %button{ class: 'btn btn-sm btn-secondary h-100 flex-grow-1 mr-1', disabled: true }
+    Missing
