@@ -13,19 +13,13 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
 
-    if @book.save
-      redirect_to books_path
-    end
+    redirect_to books_path if @book.save
   end
 
   def edit; end
 
   def update
-    if @book.update(book_params)
-      redirect_to book_path(@book)
-    else
-      render :edit
-    end
+    redirect_to book_path(@book) if @book.update(book_params)
   end
 
   def vote
@@ -34,6 +28,7 @@ class BooksController < ApplicationController
   end
 
   def take
+    return unless @book.history.last.returned_in
     @book.history.create(user: current_user)
     @book.update(status: false)
   end
