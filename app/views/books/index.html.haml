@@ -1,25 +1,25 @@
 %section#most-popular
   .row
-    .col-12
+    .col-12.offset-0.col-md-10.offset-md-1.col-lg-6.offset-lg-3
       %h4.most-popular-books-text
         most popular books
       %hr.underline/
   =render 'carousel'
   .row
-    .col-12
+    .col-12.offset-0.col-md-10.offset-md-1.col-lg-6.offset-lg-3
       %hr.underline/
 
 -if current_user.librarian?
   %section#librarian-control
     .row.mt-4.mb-2
-      .col-6
+      .col-6.offset-0.col-md-5.offset-md-1.col-lg-3.offset-lg-3
         =link_to('Taken history', '#', class: 'btn btn-success d-block')
-      .col-6
+      .col-6.col-md-5.col-lg-3
         =link_to('Add book', '#modal-form', 'data-toggle' => 'modal', class: 'btn btn-success d-block')
 
 %section#books
   .row
-    .col-12
+    .col-12.offset-0.col-md-10.offset-md-1.col-lg-6.offset-lg-3
       %h4.all-books-text
         all books
       %hr.underline/
@@ -30,7 +30,7 @@
     .col-10.offset-1.col-lg-6.offset-lg-3.mb-3.mt-3
       =paginate @books, window: 1
   .row
-    .col-12
+    .col-12.offset-0.col-md-10.offset-md-1.col-lg-6.offset-lg-3
       %hr.underline/
 
 =render 'modal_book_form'

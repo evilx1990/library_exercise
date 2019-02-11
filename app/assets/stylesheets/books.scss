@@ -25,6 +25,11 @@
   justify-content: center;
 }
 
+.left, .right {
+  cursor: pointer;
+}
+
+
 .carousel-content {
   position: relative;
   width: 1px;

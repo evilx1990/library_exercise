@@ -25,6 +25,9 @@ $(window).on("load turbolinks:load resize", ->
   carouselItems = document.querySelectorAll('.carousel-point')
   for i in carouselItems
     $(i).height(max)
+
+  $(".right").css("pointer-events", "auto")
+  $(".left").css("pointer-events", "auto")
 )
 
 $(document).on("load turbolinks:load", ->
