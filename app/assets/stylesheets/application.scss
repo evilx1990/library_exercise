@@ -36,7 +36,7 @@ body {
   margin: 0 20px;
 }
 
-nav, article, aside {
+nav, article, aside, footer {
   transition: all 0.3s;
 }
 
@@ -73,6 +73,13 @@ aside hr {
   margin: 0 10px;
   opacity: 0.3;
   display: block;
+}
+
+footer {
+  position: absolute;
+  bottom: -105px;
+  left: 0;
+  width: 100%;
 }
 
 .sidebar-link {
