@@ -61,7 +61,8 @@
             %small
               no comments yet:(
         -else
-          =render @book.comments.order_by(created_at: :desc)
+          =render @comments
+          =paginate @comments
     %hr/
 
   #book-history

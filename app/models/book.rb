@@ -32,7 +32,6 @@ class Book
     votes.each do |vote|
       sum += vote.rating
       count += 1
-      p sum
     end
 
     self.rating = (sum / count).round(1)
