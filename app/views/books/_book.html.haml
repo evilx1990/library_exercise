@@ -10,23 +10,31 @@
     .title
       %small
         title:&nbsp
-        =link_to(truncate(book.title, length: 50), book_path(book))
+        =link_to(truncate(book.title, length: 70), book_path(book))
     %hr/
     .status
       %small
         status:&nbsp
-        =book.status
-        &nbsp | &nbsp
-        read? &nbsp
-        =current_user.read?(book)
+        -if book.status
+          %span{ style: 'color: green;' }
+            in stock
+        -elsif !book.status &&  book.history.last&.user == current_user
+          %span{ style: 'color: orange;' }
+            read now
+        -else
+          %span{ style: 'color: gray;' }
+            missing
+        %br/
     %hr/
     .last-reader
       %small
         last reader:
         -if book.history.last.present?
           =book.history.last.user.first_name
-          &nbsp
           =book.history.last.user.last_name
         -else
           none
+    -if current_user.read?(book)
+      %span{ style: 'color: green;' }
+        read
 %hr.d-block.mt-3.mb-2/

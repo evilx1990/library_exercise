@@ -1,0 +1,8 @@
+$('#book-manipulation > div.row.ml-1.mr-1 > div:nth-child(3) > a')
+    .replaceWith("<button class=\"btn btn-sm btn-secondary h-100 flex-grow-1 mr-1\" disabled>\n" +
+        "Missing" +
+        "</button>")
+
+$('article').prepend("<div class=\"alert alert-danger text-center\" role=\"alert\">\n" +
+    "Sorry, this book is missing. Please, try again, later" +
+    "</div>")

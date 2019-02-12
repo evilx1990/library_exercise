@@ -14,7 +14,6 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
-
     redirect_to books_path if @book.save
   end
 
@@ -30,14 +29,20 @@ class BooksController < ApplicationController
   end
 
   def take
-    return unless @book.history.last.returned_in
-    @book.history.create(user: current_user)
+    unless @book.status
+      render :take_error
+      return
+    end
+
+    puts @book.history.create!(user: current_user).inspect
     @book.update(status: false)
   end
 
   def return
     @record = @book.history.where(user: current_user, returned_in: nil)
+    puts @record.inspect
     @record.update(returned_in: Time.now)
+    puts @record.inspect
     @book.update(status: true)
   end
 
