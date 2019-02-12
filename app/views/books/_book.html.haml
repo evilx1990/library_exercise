@@ -1,15 +1,16 @@
-.book
+.row.book{ id: manip ? book.id : nil  }
+  -if manip
+    .manip
+      =render 'settings', book: book
   .col-4.col-sm-3.p-1.d-flex.align-items-center
     =link_to(image_tag(book.image.url, alt: 'book-image', class: 'book-image'), book_path(book))
-  .col-8.col-sm-9.book-description
+  .col-7.col-sm-8.book-description
     .author
       %small
-        author(s):&nbsp
         =book.author.gsub("\n", '<br/>').html_safe
     %hr/
     .title
       %small
-        title:&nbsp
         =link_to(truncate(book.title, length: 70), book_path(book))
     %hr/
     .status
@@ -17,23 +18,15 @@
         status:&nbsp
         -if book.status
           %span{ style: 'color: green;' }
-            in stock
-        -elsif !book.status &&  book.history.last&.user == current_user
-          %span{ style: 'color: orange;' }
-            read now
+            In
         -else
           %span{ style: 'color: gray;' }
-            missing
-        %br/
+            Out
+          .last-reader
+            read now:&nbsp
+            =book.history.last.user.first_name
+            =book.history.last.user.last_name
     %hr/
-    .last-reader
-      %small
-        last reader:
-        -if book.history.last.present?
-          =book.history.last.user.first_name
-          =book.history.last.user.last_name
-        -else
-          none
     -if current_user.read?(book)
       %span{ style: 'color: green;' }
         read

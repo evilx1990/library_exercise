@@ -1,14 +1,22 @@
 .btn-group
-  %button.btn.btn-dark.btn-sm.dropdown-toggle{ 'aria-expanded' => 'false',
-                                               'aria-haspopup' => 'true',
-                                               'data-toggle' => 'dropdown',
-                                               :type => 'button' }
-    =image_tag('book-setting.png', alt: 'book-settings', class: 'settings-icon')
+  %button.btn.btn-sm.dropdown-toggle{ class: action_name.eql?('show') ? 'btn-dark' : 'btn-link',
+                                      'aria-expanded' => 'false',
+                                      'aria-haspopup' => 'true',
+                                      'data-toggle' => 'dropdown',
+                                      :type => 'button' }
+    -if action_name.eql?('show')
+      =image_tag('book-setting-light.png', alt: 'book-settings', class: 'settings-icon')
+    -else
+      =image_tag('book-setting-dark.png', alt: 'book-settings', class: 'settings-icon')
   #dropdown-width.dropdown-menu.dropdown-menu-right
-    =link_to('Edit', '#modal-form', 'data-toggle' => 'modal', class: 'dropdown-item')
+    -if action_name.eql?('show')
+      =link_to('Edit', '#modal-form', 'data-toggle' => 'modal', class: 'dropdown-item')
+    -else
+      =link_to('Edit', edit_book_path(book), class: 'dropdown-item')
     .dropdown-divider
     =link_to('Delete',
-             book_path(@book, redirect: true),
+             book_path(book, redirect: action_name.eql?('show')),
              data: { confirm: 'You are sure?' },
              method: :delete,
+             remote: true,
              class: 'dropdown-item')

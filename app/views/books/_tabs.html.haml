@@ -1,0 +1,33 @@
+#book-comments.active-tab-content
+  =render 'comments/form'
+  %hr/
+  .row
+    .col-12.offset-0.col-md-10.offset-md-1.col-lg-6.offset-lg-3
+      -if @book.comments.count.zero?
+        .text-center
+          %small
+            no comments yet:(
+      -else
+        =render @comments
+        =paginate @comments
+  %hr.mt-5/
+
+#book-history
+  %hr/
+  .row
+    .col-12.offset-0.col-md-10.offset-md-1.col-lg-6.offset-lg-3
+      -if @book.history.count.zero?
+        .text-center
+          %small
+            history empty:(
+      -else
+        %table.w-100.text-center
+          %tr
+            %th
+              user
+            %th
+              taken in
+            %th
+              returned in
+          =render @book.history.order_by(taken_in: :desc)
+  %hr.mt-5/

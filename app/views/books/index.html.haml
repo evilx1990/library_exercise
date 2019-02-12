@@ -9,11 +9,10 @@
     .col-12.offset-0.col-md-10.offset-md-1.col-lg-6.offset-lg-3
       %hr.underline/
 
--if current_user.librarian?
-  %section#librarian-control
-    .row.mt-4.mb-2
-      .col-6.offset-3.col-lg-2.offset-lg-5
-        =link_to('Add book', '#modal-form', 'data-toggle' => 'modal', class: 'btn btn-success d-block')
+%section#librarian-control
+  .row.mt-4.mb-2
+    .col-6.offset-3.col-lg-2.offset-lg-5
+      =link_to('Add book', '#modal-form', 'data-toggle' => 'modal', class: 'btn btn-success d-block')
 
 %section#books
   .row
@@ -23,7 +22,7 @@
       %hr.underline/
   .row
     .col-10.offset-1.col-lg-6.offset-lg-3
-      =render @books
+      =render @books, manip: true
   .row
     .col-10.offset-1.col-lg-6.offset-lg-3.mb-3.mt-3
       =paginate @books, window: 1

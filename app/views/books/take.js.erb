@@ -1,6 +1,10 @@
+// replace "Take" button to "Return"
 $('#book-manipulation > div.row.ml-1.mr-1 > div:nth-child(3) > a')
     .replaceWith('<%= link_to('Return',
                               return_book_path(@book),
                               method: :put,
                               remote: true,
                               class: 'btn btn-sm btn-warning h-100 flex-grow-1 mr-1')%>');
+
+// update votes counter
+$('#taken').html('taken count: <%= @book.history.count %>')

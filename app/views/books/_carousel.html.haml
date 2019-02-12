@@ -9,7 +9,7 @@
         .carousel-content
           -most_popular.each_with_index do |book, index|
             .carousel-slide{ class: index.eql?(0) ? 'active-slide' : '' }
-              =render 'book', book: book
+              =render 'book', book: book, manip: false
       .col-1.m-0.p-0
         .carousel-nav.right
           %span

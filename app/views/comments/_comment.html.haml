@@ -5,7 +5,7 @@
     .d-inline-block
       =truncate(comment.user.first_name + ' ' + comment.user.last_name, length: 30)
     %small.d-inline-block.comment-date
-      =comment.created_at.strftime('%D %R')
+      =comment.created_at.strftime('%d.%m.%Y %R')
   .comment-body
     =comment.message.gsub("\n", '<br/>').html_safe
 %hr/

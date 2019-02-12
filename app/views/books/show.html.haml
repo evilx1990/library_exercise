@@ -11,26 +11,21 @@
 
 %section#book-manipulation
   .row.ml-1.mr-1
+    .col-12.offset-0.col-md-10.offset-md-1.col-lg-9.offset-lg-3.d-flex.justify-content-between
+      %small#votes
+        votes count:
+        =@book.votes.count
+      %small#taken
+        taken count:
+        =@book.history.count
+  .row.mt-1.mr-1.ml-1
     .col-5.offset-0.col-md-4.offset-md-1.col-lg-2.offset-lg-3.d-flex.align-items-center
-      %input#range.w-100{ type: :range,
-                          min: 1,
-                          max: 10,
-                          disabled: @book.voted?(current_user),
-                          value: @book.rating }
+      %input#range.w-100{ type: :range, min: 1, max: 10, disabled: @book.voted?(current_user), value: @book.rating }
     .col-2.p-0.d-flex.align-items-center
-      =image_tag('rating.png', alt: 'rating', class: 'rating-icon')
-      #rating
-        -if @book.voted?(current_user)
-          =@book.rating
-        -else
-          =link_to(@book.rating,
-                   vote_book_path(rating: @book.rating.round),
-                   method: :post,
-                   remote: true)
-
+      =render 'rating'
     .col-5.col-md-4.col-lg-2.d-flex
       =render 'status'
-      =render 'settings'
+      =render 'settings', book: @book
   .col-12.text-center
     %small
       for vote use range input and tap to rating
@@ -44,46 +39,14 @@
       =link_to('show more',  '#modal-description', 'data-toggle' => 'modal', class: 'd-inline-block')
   %hr/
 
-%section#comments-history
+%section#comments-history-tabs
   .row.p-0.text-center
     #comments-tab.tab.active-tab.col-6.offset-0.col-md-5.offset-md-1.col-lg-3.offset-lg-3
       comments
     #history-tab.tab.col-6.col-md-5.col-lg-3
       history
 
-  #book-comments.active-tab-content
-    =render 'comments/form'
-    %hr/
-    .row
-      .col-12.offset-0.col-md-10.offset-md-1.col-lg-6.offset-lg-3
-        -if @book.comments.count.zero?
-          .text-center
-            %small
-              no comments yet:(
-        -else
-          =render @comments
-          =paginate @comments
-    %hr/
-
-  #book-history
-    %hr/
-    .row
-      .col-12.offset-0.col-md-10.offset-md-1.col-lg-6.offset-lg-3
-        -if @book.history.count.zero?
-          .text-center
-            %small
-              history empty:(
-        -else
-          %table.w-100.text-center
-            %tr
-              %th
-                user
-              %th
-                taken in
-              %th
-                returned in
-            =render @book.history.order_by(taken_in: :desc)
-    %hr/
+  =render 'tabs'
 
 -# modal
 =render 'modal_description'

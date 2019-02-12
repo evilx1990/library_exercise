@@ -1,4 +1,8 @@
+// update average rating
 $('#rating').html('<%= @book.rating %>')
 let range = document.getElementById('range')
 range.disabled = true
 range.value = <%= @book.rating %>
+
+// update votes counter
+$('#votes').html('votes count: <%= @book.votes.count %>')

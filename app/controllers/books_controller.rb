@@ -9,12 +9,13 @@ class BooksController < ApplicationController
   end
 
   def show
-    @comments = @book.comments.order_by(taken_in: :desc).page(params[:page]).per(10)
+    @comments = @book.comments.order_by(created_at: :desc).page(params[:page]).per(10)
   end
 
   def create
     @book = Book.new(book_params)
-    redirect_to books_path if @book.save
+    @book.user = current_user
+    redirect_to books_path if @book.save!
   end
 
   def edit; end
@@ -40,15 +41,17 @@ class BooksController < ApplicationController
 
   def return
     @record = @book.history.where(user: current_user, returned_in: nil)
-    puts @record.inspect
     @record.update(returned_in: Time.now)
-    puts @record.inspect
     @book.update(status: true)
   end
 
   def destroy
     @book.destroy
-    redirect_to books_path if params[:redirect]
+    if params[:redirect].eql?('true')
+      redirect_to books_path
+    else
+      render 'books/destroy'
+    end
   end
 
   private

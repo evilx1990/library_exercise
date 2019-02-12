@@ -36,7 +36,7 @@
 }
 
 .book {
-  display: flex;
+  position: relative;
 }
 
 .book img {
@@ -66,6 +66,13 @@
 
 .book-image, .book-description {
   width: 100%;
+}
+
+.manip {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
 }
 
 .book-form-field {

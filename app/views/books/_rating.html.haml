@@ -1,0 +1,6 @@
+=image_tag('rating.png', alt: 'rating', class: 'rating-icon')
+#rating
+  -if @book.voted?(current_user)
+    =@book.rating
+  -else
+    =link_to(@book.rating, vote_book_path(rating: @book.rating.round), method: :post, remote: true)

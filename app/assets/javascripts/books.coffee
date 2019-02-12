@@ -68,14 +68,6 @@ $(document).on("load turbolinks:load", ->
       )
     )
   )
-
-  interval = setInterval(->
-    right()
-  , 7000)
-
-  $('#carousel').on('click', ->
-    clearInterval(interval)
-  )
 )
 
 $(window).on('turbolinks:load', ->
