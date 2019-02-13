@@ -14,10 +14,10 @@
     .col-12.offset-0.col-md-10.offset-md-1.col-lg-9.offset-lg-3.d-flex.justify-content-between
       %small#votes
         votes count:
-        =@book.votes.count
+        =@book.votes_count
       %small#taken
         taken count:
-        =@book.history.count
+        =@book.taken_count
   .row.mt-1.mr-1.ml-1
     .col-5.offset-0.col-md-4.offset-md-1.col-lg-2.offset-lg-3.d-flex.align-items-center
       %input#range.w-100{ type: :range, min: 1, max: 10, disabled: @book.voted?(current_user), value: @book.rating }
@@ -36,7 +36,8 @@
       =image_tag(@book.image.url, alt: 'book-image', class: 'w-100 border')
     .col-7.col-md-6.col-lg-4
       =truncate(@book.description, length: 150)
-      =link_to('show more',  '#modal-description', 'data-toggle' => 'modal', class: 'd-inline-block')
+      -if @book.description.length > 150
+        =link_to('show more',  '#modal-description', 'data-toggle' => 'modal', class: 'd-inline-block')
   %hr/
 
 %section#comments-history-tabs

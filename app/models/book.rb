@@ -27,14 +27,11 @@ class Book
   validates :author,  presence: true
 
   def update_rating
-    sum = count = 0.0
+    sum = 0.0
 
-    votes.each do |vote|
-      sum += vote.rating
-      count += 1
-    end
+    votes.each { |vote| sum += vote.rating }
 
-    self.rating = (sum / count).round(1)
+    self.rating = (sum / self.votes_count).round(1)
     self.save
   end
 
