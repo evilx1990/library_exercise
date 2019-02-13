@@ -16,7 +16,7 @@
   %hr/
   .row
     .col-12.offset-0.col-md-10.offset-md-1.col-lg-6.offset-lg-3
-      -if @book.history.count.zero?
+      -if @book.taken_count.zero?
         .text-center
           %small
             history empty:(

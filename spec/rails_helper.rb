@@ -1,6 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
-require 'capibara/rspec'
+require 'capybara/rspec'
 require 'database_cleaner'
 
 ENV['RAILS_ENV'] ||= 'test'
@@ -55,8 +55,7 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers
 
   config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.strategy = :truncation
   end
 
   config.around(:each) do |example|

@@ -35,14 +35,14 @@ class BooksController < ApplicationController
       return
     end
 
-    puts @book.history.create!(user: current_user).inspect
+    @book.history.create!(user: current_user)
     @book.update(status: false)
   end
 
   def return
-    @record = @book.history.where(user: current_user, returned_in: nil)
-    @record.update(returned_in: Time.now)
-    @book.update(status: true)
+    @record = @book.history.where(user: current_user, returned_in: nil).first
+    @record.update_attribute(:returned_in, Time.now)
+    @book.update_attribute(:status, true)
   end
 
   def destroy

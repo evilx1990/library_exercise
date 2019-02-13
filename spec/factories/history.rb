@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :history do
-    taken_in    { Time.now - 1.day }
-    returned_in { Time.now }
-
+  factory :history, class: 'History' do
     association :user, factory: :user
     association :book, factory: :book
+
+    trait :returned do
+      returned_in { Time.now }
+    end
   end
 end
