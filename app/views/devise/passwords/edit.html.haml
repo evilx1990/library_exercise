@@ -2,7 +2,7 @@
   =form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'row', method: :put }) do |f|
     =devise_error_messages!
     =f.hidden_field :reset_password_token
-    .field.col-10.offset-1
+    .field.col-10.offset-1.col-lg-6.offset-lg-3
       - if @minimum_password_length
         %em
           (#{@minimum_password_length} characters minimum)
@@ -11,9 +11,9 @@
                          autofocus: true,
                          placeholder: 'new password',
                          class: 'devise-field'
-    .field.col-10.offset-1
+    .field.col-10.offset-1.col-lg-6.offset-lg-3
       =f.password_field :password_confirmation,
                         placeholder: 'confirm password',
                         class: 'devise-field'
-    .actions.col-10.offset-1
+    .actions.col-10.offset-1.col-lg-6.offset-lg-3
       =f.submit 'Change my password', data: { 'disable-with' => 'load...' }, class: 'devise-button'

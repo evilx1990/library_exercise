@@ -7,7 +7,7 @@
     -if action_name.eql?('show')
       =image_tag('book-setting-light.png', alt: 'book-settings', class: 'settings-icon')
     -else
-      =image_tag('book-setting-dark.png', alt: 'book-settings', class: 'settings-icon')
+      =image_tag('book-setting-dark.png', alt: 'book-settings', class: 'settings-icon border-0')
   #dropdown-width.dropdown-menu.dropdown-menu-right
     -if action_name.eql?('show')
       =link_to('Edit', '#modal-form', 'data-toggle' => 'modal', class: 'dropdown-item')

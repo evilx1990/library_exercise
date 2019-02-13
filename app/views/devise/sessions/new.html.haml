@@ -1,16 +1,20 @@
 #devise-form
   =form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'row'}) do |f|
-    .field.col-10.offset-1
+    .col-10.offset-1.col-lg-6.offset-lg-3
+      %p
+        Dont have account?
+        =link_to('Sign up', new_user_registration_path)
+    .field.col-10.offset-1.col-lg-6.offset-lg-3
       =f.email_field :email,
                      placeholder: 'email',
                      class: 'devise-field'
-    .field.col-10.offset-1
+    .field.col-10.offset-1.col-lg-6.offset-lg-3
       =f.password_field :password,
                          placeholder: 'password',
                          class: 'devise-field'
-    .field.mb-2.col-10.offset-1
+    .field.mb-2.col-10.offset-1.col-lg-6.offset-lg-3
       =f.check_box :remember_me
       =f.label :remember_me
-    .actions.col-10.offset-1.d-flex.justify-content-between
+    .actions.col-10.offset-1.col-lg-6.offset-lg-3.d-flex.justify-content-between
       =f.submit 'Log in', data: { 'disable-with' => 'load...' }, class: 'devise-button'
       = render 'devise/shared/links'

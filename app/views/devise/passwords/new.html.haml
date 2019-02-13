@@ -1,9 +1,9 @@
 #devise-form
   =form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'row', method: :post }) do |f|
     =devise_error_messages!
-    .field.col-10.offset-1
+    .field.col-10.offset-1.col-lg-6.offset-lg-3
       =f.email_field :email, placeholder: 'email', class: 'devise-field'
-    .actions.actions.col-10.offset-1
+    .actions.actions.col-10.offset-1.col-lg-6.offset-lg-3
       =f.submit 'Send me reset password instructions',
                 data: { 'disable-with' => 'load...' },
                 class: 'w-100 devise-button'
