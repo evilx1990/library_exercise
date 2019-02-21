@@ -12,7 +12,6 @@ class User
   field :first_name,              type: String
   field :last_name,               type: String
   field :encrypted_password,      type: String
-  field :librarian,               type: Boolean,  default: false
   ## Recoverable
   field :reset_password_token,    type: String
   field :reset_password_sent_at,  type: Time
@@ -29,9 +28,5 @@ class User
 
   def read?(book)
     history.where(book: book)&.last&.returned_in.present?
-  end
-
-  def librarian?
-    librarian
   end
 end

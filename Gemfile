@@ -61,6 +61,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
   gem 'rspec-rails'
+  gem 'mongoid-rspec'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'faker'

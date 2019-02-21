@@ -10,6 +10,6 @@ Rails.application.routes.draw do
     put   :take,    on: :member
     put   :return,  on: :member
 
-    resources :comments, except: %i[index show new]
+    resources :comments, only: :create
   end
 end

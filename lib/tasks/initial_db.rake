@@ -2,17 +2,15 @@
 
 namespace :app do
   desc 'Create librarian account'
-  task create_librarian: :environment do
-    login = "lib_#{SecureRandom.hex(3)}@library.loc"
+  task create_user: :environment do
+    login = "user_#{SecureRandom.hex(3)}@library.loc"
     password = SecureRandom.hex(3)
-    lib_count = User.where(librarian: true).count
 
     User.create!(
-        first_name: "librarian_#{lib_count}",
-        last_name: '_',
+        first_name: "User_#{User.count}",
+        last_name: '...',
         email: login,
         password: password,
-        librarian: true
     )
 
     print_login(login, password)
@@ -62,7 +60,7 @@ namespace :app do
 
   def print_login(email, password)
     puts '-' * 50
-    puts "librarian account:\n\n"
+    puts "User account:\n\n"
     puts "login: #{email}"
     puts "password: #{password}\n\n"
     puts '-' * 50
