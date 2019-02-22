@@ -19,12 +19,10 @@ class Book
   has_many    :comments,  dependent: :destroy
   has_many    :history,   dependent: :destroy,  class_name: 'History'
 
-  index({ title: 1, author: 1 })
-
   mount_uploader :image,  ImageUploader
 
-  validates :title,   presence: true
-  validates :author,  presence: true
+  validates_presence_of :title
+  validates_presence_of :author
 
   def update_rating
     sum = 0.0
@@ -36,6 +34,6 @@ class Book
   end
 
   def voted?(user)
-    votes.find_by(user: user)
+    !!votes.find_by(user: user)
   end
 end

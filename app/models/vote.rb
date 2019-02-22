@@ -8,7 +8,8 @@ class Vote
   belongs_to  :user
   belongs_to  :book, counter_cache: :votes_count
 
-  index({ user: 1, book: 1 })
+  validates_presence_of :rating
 
-  validates :rating,  presence: true
+  index({ user: 1 })
+  index({ book: 1 })
 end

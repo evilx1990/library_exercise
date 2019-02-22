@@ -23,8 +23,8 @@ class User
   has_many  :comments
   has_many  :history, class_name: 'History'
 
-  validates :first_name,  presence: true
-  validates :last_name,   presence: true
+  validates_presence_of :first_name
+  validates_presence_of :last_name
 
   def read?(book)
     history.where(book: book)&.last&.returned_in.present?

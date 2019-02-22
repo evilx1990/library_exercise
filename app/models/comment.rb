@@ -9,7 +9,7 @@ class Comment
   belongs_to  :user
   belongs_to  :book
 
-  index({ user: 1, book: 1 })
+  validates_presence_of :message
 
-  validates :message, presence: true
+  index({ book: 1 })
 end
