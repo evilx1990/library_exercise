@@ -5,7 +5,7 @@
         most popular books
       %hr.underline/
   =render 'carousel'
-  .row.mt-3
+  .row.mt-2
     .col-12.offset-0.col-md-10.offset-md-1.col-lg-6.offset-lg-3
       %hr.underline/
 
@@ -22,7 +22,9 @@
       %hr.underline/
   .row
     .col-10.offset-1.col-lg-6.offset-lg-3
-      =render @books, manip: true
+      -@books.each do |book|
+        =render book, manip: true
+        %hr.d-block.mt-3.mb-2/
   .row
     .col-10.offset-1.col-lg-6.offset-lg-3.mb-3.mt-3
       =paginate @books, window: 1

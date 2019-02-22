@@ -15,6 +15,12 @@
         book library
       =image_tag('user_menu_icon.png', alt: 'user-menu-icon', class: 'icon toggle')
     %article
+      -if flash[:notice]
+        .alert.alert-success.text-center
+          =flash[:notice]
+      -if flash[:alert]
+        .alert.alert-danger.text-center
+          =flash[:alert]
       =yield
     %aside
       -if user_signed_in?
