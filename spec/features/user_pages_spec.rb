@@ -149,6 +149,7 @@ describe 'User pages', type: :feature do
 
   describe 'Edit user page' do
     before do
+      login_as(create(:user), scope: :user)
       visit edit_user_registration_path
     end
 
@@ -179,6 +180,7 @@ describe 'User pages', type: :feature do
         fill_in 'user_first_name',            with: Faker::Name.first_name
         fill_in 'user_last_name',             with: Faker::Name.last_name
         fill_in 'user_email',                 with: Faker::Internet.email
+        fill_in 'user_current_password',      with: ''
 
         expect(page).to have_button('Update', disabled: true)
       end
@@ -186,6 +188,7 @@ describe 'User pages', type: :feature do
       it 'email field empty' do
         fill_in 'user_first_name',            with: Faker::Name.first_name
         fill_in 'user_last_name',             with: Faker::Name.last_name
+        fill_in 'user_email',                 with: ''
         fill_in 'user_current_password',      with: Faker::Internet.password
 
         expect(page).to have_button('Update', disabled: true)
@@ -193,32 +196,31 @@ describe 'User pages', type: :feature do
 
       it 'last name field empty' do
         fill_in 'user_first_name',            with: Faker::Name.first_name
+        fill_in 'user_last_name',             with: ''
         fill_in 'user_email',                 with: Faker::Internet.email
-        fill_in 'user_password',              with: Faker::Internet.password
-        fill_in 'user_password_confirmation', with: Faker::Internet.password
+        fill_in 'user_current_password',      with: Faker::Internet.password
 
         expect(page).to have_button('Update', disabled: true)
       end
 
       it 'first name field empty' do
-        fill_in 'user_last_name',             with: Faker::Name.last_name
-        fill_in 'user_email',                 with: Faker::Internet.email
-        fill_in 'user_password',              with: Faker::Internet.password
-        fill_in 'user_password_confirmation', with: Faker::Internet.password
+        fill_in 'user_first_name',             with: ''
+        fill_in 'user_last_name',              with: Faker::Internet.email
+        fill_in 'user_email',                  with: Faker::Internet.email
+        fill_in 'user_current_password',       with: Faker::Internet.password
 
-        expect(page).to have_button('Sign up', disabled: true)
+        expect(page).to have_button('Update', disabled: true)
       end
     end
 
     context 'Sign up button enabled when' do
       it 'all fields are filled' do
-        fill_in 'user_first_name',            with: Faker::Name.first_name
-        fill_in 'user_last_name',             with: Faker::Name.last_name
-        fill_in 'user_email',                 with: Faker::Internet.email
-        fill_in 'user_password',              with: Faker::Internet.password
-        fill_in 'user_password_confirmation', with: Faker::Internet.password
+        fill_in 'user_first_name',             with: Faker::Name.first_name
+        fill_in 'user_last_name',              with: Faker::Name.last_name
+        fill_in 'user_email',                  with: Faker::Internet.email
+        fill_in 'user_current_password',       with: Faker::Internet.password
 
-        expect(page).to have_button('Sign up', disabled: false)
+        expect(page).to have_button('Update', disabled: false)
       end
     end
   end

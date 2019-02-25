@@ -4,7 +4,12 @@
       %h4.most-popular-books-text
         most popular books
       %hr.underline/
-  =render 'carousel'
+  -if @books.count.zero?
+    .text-center.pb-3
+      %small
+        empty :(
+  -else
+    =render 'carousel'
   .row.mt-2
     .col-12.offset-0.col-md-10.offset-md-1.col-lg-6.offset-lg-3
       %hr.underline/
@@ -22,9 +27,14 @@
       %hr.underline/
   .row
     .col-10.offset-1.col-lg-6.offset-lg-3
-      -@books.each do |book|
-        =render book, manip: true
-        %hr.d-block.mt-3.mb-2/
+      -if @books.count.zero?
+        .text-center.pb-3
+          %small
+            empty :(
+      -else
+        -@books.each do |book|
+          =render book, manip: true
+          %hr.d-block.mt-3.mb-2/
   .row
     .col-10.offset-1.col-lg-6.offset-lg-3.mb-3.mt-3
       =paginate @books, window: 1

@@ -25,9 +25,6 @@ $(window).on("load turbolinks:load resize", ->
   carouselItems = document.querySelectorAll('.carousel-slide')
   for i in carouselItems
     $(i).height(max)
-
-  $(".right").css("pointer-events", "auto")
-  $(".left").css("pointer-events", "auto")
 )
 
 $(document).on("load turbolinks:load", ->
@@ -43,13 +40,11 @@ $(document).on("load turbolinks:load", ->
 
   $('.right').on('click', ->
     requestAnimationFrame(->
-      $(".right").css("pointer-events", "none")
       $(points[current]).removeClass('active-slide')
       $(points[current++]).on('transitionend', ->
         current = if current >= points.length then 0 else current
         $(points[current]).addClass('active-slide')
         $(points[current]).on('transitionend', ->
-          $(".right").css("pointer-events", "auto")
         )
       )
     )
@@ -57,13 +52,11 @@ $(document).on("load turbolinks:load", ->
 
   $('.left').on('click', ->
     requestAnimationFrame(->
-      $(".left").css("pointer-events", "none")
       $(points[current]).removeClass('active-slide')
       $(points[current--]).on('transitionend', ->
         current = if current < 0 then points.length - 1 else current
         $(points[current]).addClass('active-slide')
         $(points[current]).on('transitionend', ->
-          $(".left").css("pointer-events", "auto")
         )
       )
     )

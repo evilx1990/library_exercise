@@ -59,10 +59,10 @@ namespace :app do
   end
 
   def print_login(email, password)
-    puts '-' * 50
+    puts '=' * 50
     puts "User account:\n\n"
     puts "login: #{email}"
     puts "password: #{password}\n\n"
-    puts '-' * 50
+    puts '=' * 50
   end
 end

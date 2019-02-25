@@ -81,7 +81,7 @@
   width: 24px;
 }
 // setting icon: remove arrow
-.dropdown-toggle::after {
+.dropdown-toggle::before {
   content: none !important;
 }
 
