@@ -9,13 +9,15 @@ FactoryBot.define do
 
     association :user, factory: :user
 
-    trait :out do
-      status  { false }
+    factory :out_book do
+      status    { false }
+      after(:create) { |book| create(:history, book: book) }
     end
 
     factory :book_with_vote do
       after(:create) { |book| create(:vote, book: book, user: book.user) }
     end
+
 
     factory :book_with_history do
       after(:create) { |book| create(:history, book: book, user: book.user) }

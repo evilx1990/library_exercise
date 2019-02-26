@@ -2,8 +2,10 @@
 
 require 'rails_helper'
 
-describe 'Take/Return book', type: :feature do
-  let(:book) { create(:book) }
+describe 'Take/Return/Out book', type: :feature do
+  let(:book)      { create(:book) }
+  let(:user)      { create(:user) }
+  let(:out_book)  { create(:out_book) }
 
   before do
     login_as(create(:user), scope: :user)
@@ -11,13 +13,18 @@ describe 'Take/Return book', type: :feature do
   end
 
   context 'books/show.html.haml must contain' do
-    it 'take button' do
+    it 'Take button' do
       expect(page).to have_link('Take')
     end
 
-    it 'return button if book taken', driver: :selenium_chrome_headless do
+    it 'Return button if book taken' do
       click_link('Take')
       expect(page).to have_link('Return')
+    end
+
+    it 'Missing button if book take other reader' do
+      visit book_path(out_book)
+      expect(page).to have_button('Out', disabled: true)
     end
   end
 end
