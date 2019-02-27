@@ -1,12 +1,12 @@
 # Tell Mongoid which environment this configuration is for.
 production:
-  sessions:
+  clients:
     default:
       hosts:
-        -localhost:27017
+        - localhost:27017
       database: library_exercise_production
-  options:
-    raise_not_found_error: false
+      options:
+        raise_not_found_error: false
 development:
   # Configure available database clients. (required)
   clients:
