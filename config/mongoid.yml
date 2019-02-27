@@ -4,18 +4,9 @@ production:
     default:
       hosts:
         -localhost:27017
-      database: mongoid
+      database: library_exercise_production
   options:
-    include_root_in_json: true
-    include_type_for_serialization: true
-    preload_models:
-      - Canvas
-      - Browser
-      - Firefox
-    scope_overwrite_exception: true
     raise_not_found_error: false
-    use_activesupport_time_zone: false
-    use_utc: true
 development:
   # Configure available database clients. (required)
   clients:
