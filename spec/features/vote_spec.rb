@@ -20,7 +20,7 @@ describe 'Vote range input', type: :feature do
     end
   end
 
-  context 'user can', driver: :selenium_chrome do
+  context 'user can', driver: :selenium_chrome_headless do
     before do
       find('input[type=range]').click
       find('#rating > a').click

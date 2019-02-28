@@ -178,7 +178,7 @@ describe BooksController, type: :controller do
     end
 
     context 'if status equal <false> before start action' do
-      let(:book) { create(:book, :out) }
+      let(:book) { create(:out_book) }
 
       subject! { put :take, xhr: :js, params: { id: book.id } }
 

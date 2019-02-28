@@ -12,7 +12,7 @@ describe 'Take/Return/Out book', type: :feature do
     visit book_path(book)
   end
 
-  context 'books/show.html.haml must contain' do
+  context 'books/show.html.haml must contain', driver: :selenium_chrome_headless do
     it 'Take button' do
       expect(page).to have_link('Take')
     end
