@@ -10,7 +10,7 @@ $(document).on("turbolinks:load", ->
           $('nav, article, footer').unbind('click')
   )
   $('.sidebar-link').on('click', ->
-    $('nav, article').removeClass('switched-main')
-    $('aside, footer').removeClass('switched-bar')
+    $('nav, article, footer').removeClass('switched-main')
+    $('aside').removeClass('switched-bar')
   )
 )
