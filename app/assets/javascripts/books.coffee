@@ -42,8 +42,8 @@ $(document).on("load turbolinks:load", ->
 
 
   $('.right').on('click', ->
+    $(".right").css("pointer-events", "none")
     requestAnimationFrame(->
-      $(".right").css("pointer-events", "none")
       $(points[current]).removeClass('active-slide')
       $(points[current++]).on('transitionend', ->
         current = if current >= points.length then 0 else current
@@ -56,8 +56,8 @@ $(document).on("load turbolinks:load", ->
   )
 
   $('.left').on('click', ->
+    $(".left").css("pointer-events", "none")
     requestAnimationFrame(->
-      $(".left").css("pointer-events", "none")
       $(points[current]).removeClass('active-slide')
       $(points[current--]).on('transitionend', ->
         current = if current < 0 then points.length - 1 else current
