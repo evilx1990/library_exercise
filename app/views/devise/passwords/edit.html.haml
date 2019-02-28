@@ -9,10 +9,12 @@
         %br/
       =f.password_field :password,
                          autofocus: true,
+                         autocomplete: 'off',
                          placeholder: 'new password',
                          class: 'devise-field'
     .field.col-10.offset-1.col-lg-6.offset-lg-3
       =f.password_field :password_confirmation,
+                        autocomplete: 'off',
                         placeholder: 'confirm password',
                         class: 'devise-field'
     .actions.col-10.offset-1.col-lg-6.offset-lg-3

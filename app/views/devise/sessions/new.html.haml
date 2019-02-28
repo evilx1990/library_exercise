@@ -5,13 +5,15 @@
         Don't have account?
         =link_to('Sign up', new_user_registration_path)
     .field.col-10.offset-1.col-lg-6.offset-lg-3
-      =f.email_field     :email,
-                         placeholder: 'email',
-                         class: 'devise-field'
+      =f.email_field      :email,
+                          autocomplete: 'off',
+                          placeholder: 'email',
+                          class: 'devise-field'
     .field.col-10.offset-1.col-lg-6.offset-lg-3
-      =f.password_field :password,
-                         placeholder: 'password',
-                         class: 'devise-field'
+      =f.password_field   :password,
+                          autocomplete: 'off',
+                          placeholder: 'password',
+                          class: 'devise-field'
     .field.mb-2.col-10.offset-1.col-lg-6.offset-lg-3
       =f.check_box       :remember_me
       =f.label           :remember_me

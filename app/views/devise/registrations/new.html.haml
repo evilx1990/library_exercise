@@ -3,28 +3,33 @@
     =devise_error_messages!
     .field.col-10.offset-1.col-lg-6.offset-lg-3
       =f.text_field :first_name,
-        placeholder: 'first name',
-        class: 'devise-field'
+                    autocomplete: 'off',
+                    placeholder: 'first name',
+                    class: 'devise-field'
     .field.col-10.offset-1.col-lg-6.offset-lg-3
       =f.text_field :last_name,
-        placeholder: 'last name',
-        class: 'devise-field'
+                    autocomplete: 'off',
+                    placeholder: 'last name',
+                    class: 'devise-field'
     .field.col-10.offset-1.col-lg-6.offset-lg-3
-      =f.email_field :email,
-        placeholder: 'email',
-        class: 'devise-field'
+      =f.email_field  :email,
+                      autocomplete: 'off',
+                      placeholder: 'email',
+                      class: 'devise-field'
     .field.col-10.offset-1.col-lg-6.offset-lg-3
       -if @minimum_password_length
         %small
           #{@minimum_password_length} characters minimum
       %br/
       =f.password_field :password,
-          placeholder: 'your password',
-          class: 'devise-field'
+                        autocomplete: 'off',
+                        placeholder: 'your password',
+                        class: 'devise-field'
     .field.col-10.offset-1.col-lg-6.offset-lg-3
       =f.password_field :password_confirmation,
-          placeholder: 'confirm password',
-          class: 'devise-field'
+                        autocomplete: 'off',
+                        placeholder: 'confirm password',
+                        class: 'devise-field'
     .actions.col-10.offset-1.col-lg-6.offset-lg-3.d-flex.justify-content-between
       =f.submit 'Sign up', data: { 'disable-with' => 'load...' }, class: 'devise-button'
   = render 'devise/shared/links'
