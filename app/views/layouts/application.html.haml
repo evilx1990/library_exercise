@@ -8,6 +8,7 @@
     =csp_meta_tag
     =stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     =javascript_include_tag 'application', 'data-turbolinks-track':  'reload'
+    =favicon_link_tag asset_path('favicon.png')
   %body
     %nav
       =link_to(image_tag('app-icon.png', alt: 'app-icon', class: 'icon'), root_path)
