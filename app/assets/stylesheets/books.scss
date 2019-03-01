@@ -52,11 +52,21 @@
   top: 0;
   width: 100%;
   opacity: 0;
-  transition: 0.5s;
   visibility: hidden;
+  transition: 0.5s;
 }
 
 .active-slide {
+  visibility: visible;
+  opacity: 1;
+}
+
+.current-slide {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.next-slide {
   visibility: visible;
   opacity: 1;
 }
