@@ -36,42 +36,37 @@ $(document).on("load turbolinks:load", ->
     for i in [0...points.length]
       if $(points[i]).hasClass('active-slide')
         return i
-    return -1
 
-  points = document.getElementsByClassName('carousel-slide')
+  points = document.querySelectorAll('.carousel-slide')
+  current = currentPoint()
 
-  changeSlide = (direction) ->
-    current = currentPoint()
-    if current == -1
-      return false
-
-    $(points[current]).removeClass('active-slide')
-    $(points[current]).addClass('current-slide')
-    $(points[current]).on('transitionend', ->
-      if event.propertyName == 'opacity'
-        $(points[current]).removeClass('current-slide')
-
-        if direction == 'right'
-          current = if ++current >= points.length then 0 else current
-        else if direction == 'left'
-          current = if --current < 0 then points.length - 1 else current
-
-        $(points[current]).addClass('next-slide')
-        $('.next-slide').on('transitionend', ->
-          if event.propertyName == 'opacity'
-            $(points[current]).removeClass('next-slide')
-            $(points[current]).addClass('active-slide')
-            $(this).off('transitionend')
-        )
-        $(this).off('transitionend')
-    )
 
   $('.right').on('click', ->
-    changeSlide('right')
+    $(".right").css("pointer-events", "none")
+    requestAnimationFrame(->
+      $(points[current]).removeClass('active-slide')
+      $(points[current++]).on('transitionend', ->
+        current = if current >= points.length then 0 else current
+        $(points[current]).addClass('active-slide')
+        $(points[current]).on('transitionend', ->
+          $(".right").css("pointer-events", "auto")
+        )
+      )
+    )
   )
 
   $('.left').on('click', ->
-    changeSlide('left')
+    $(".left").css("pointer-events", "none")
+    requestAnimationFrame(->
+      $(points[current]).removeClass('active-slide')
+      $(points[current--]).on('transitionend', ->
+        current = if current < 0 then points.length - 1 else current
+        $(points[current]).addClass('active-slide')
+        $(points[current]).on('transitionend', ->
+          $(".left").css("pointer-events", "auto")
+        )
+      )
+    )
   )
 )
 
