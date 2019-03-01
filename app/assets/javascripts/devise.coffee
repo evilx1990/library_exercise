@@ -1,6 +1,6 @@
 # disable button if any field is empty
 
-$(document).on("turbolinks:load", ->
+$(document).on("turbolinks:load load", ->
   $("""input[value='Log in'],
     input[value='Sign up'],
     input[value='Send me reset password instructions'],
