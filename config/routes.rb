@@ -5,11 +5,11 @@ Rails.application.routes.draw do
 
   root 'books#index'
 
-  resources :books, except: %i[:new] do
+  resources :books, except: :new do
     post  :vote,    on: :member
     put   :take,    on: :member
     put   :return,  on: :member
 
-    resources :comments, only: :create
+    resources :comments, only: %i[index create]
   end
 end

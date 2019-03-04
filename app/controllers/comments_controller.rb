@@ -1,13 +1,29 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  before_action :find_book,     only: %i[create]
+  before_action :find_book
 
+  # GET /books.json
+  def index
+    @comments = @book.comments
+
+    respond_to do |format|
+      format.json { render json: { commetns: @comments } }
+    end
+  end
+
+  # POST /books.html
+  # POST /books.json
   def create
     @comment = @book.comments.new(comment_params)
     @comment.user = current_user
 
-    redirect_to book_path(@book) if @comment.save
+    if @comment.save
+      respond_to do |format|
+        format.html { redirect_to book_path(@book) }
+        format.json { render status: :ok }
+      end
+    end
   end
 
   private
