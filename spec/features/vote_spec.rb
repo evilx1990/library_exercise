@@ -31,7 +31,7 @@ describe 'Vote range input', type: :feature do
     end
 
     it 'user can vote only once' do
-      expect(page).to have_selector('input[disabled=disabled]')
+      expect(page).to have_selector('input[disabled]')
     end
   end
 end

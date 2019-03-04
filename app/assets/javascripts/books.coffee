@@ -74,14 +74,3 @@ $(document).on("load turbolinks:load", ->
     changeSlide('left')
   )
 )
-
-$(window).on('turbolinks:load', ->
-  $("input[value='Create comment']").attr('disabled', true)
-
-  $("#comment_message").on('input', ->
-    if $("#comment_message").val() == ''
-      $("input[value='Create comment']").attr('disabled', true)
-    else
-      $("input[value='Create comment']").attr('disabled', false)
-  )
-)
