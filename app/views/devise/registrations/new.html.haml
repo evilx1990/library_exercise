@@ -1,6 +1,8 @@
+-if resource.errors.any?
+  .w-100.alert.alert-danger
+    =devise_error_messages!
 #devise-form
   =form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'row' }) do |f|
-    =devise_error_messages!
     .field.col-10.offset-1.col-lg-6.offset-lg-3
       =f.text_field :first_name,
                     autocomplete: 'off',
