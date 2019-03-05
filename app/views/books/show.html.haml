@@ -26,9 +26,10 @@
     .col-5.col-md-4.col-lg-2.d-flex
       =render 'status'
       =render 'settings', book: @book
-  .col-12.text-center
-    %small
-      for vote use range input and tap to rating
+  -unless @book.voted?(current_user)
+    #how-vote.col-12.text-center
+      %small
+        for vote use range input and tap to rating
 %section#book-description
   %hr/
   .row.ml-1.mr-1

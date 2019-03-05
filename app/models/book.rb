@@ -34,6 +34,6 @@ class Book
   end
 
   def voted?(user)
-    votes&.find_by(user: user)
+    votes.find_by(user: user)
   end
 end

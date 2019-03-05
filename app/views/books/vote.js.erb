@@ -1,8 +1,9 @@
 // update average rating
 $('#rating').html('<%= @book.rating %>')
-var range = document.getElementById('range')
+var range = document.querySelector('#range')
 range.disabled = 'disabled'
 range.value = <%= @book.rating %>
 
 // update votes counter
 $('#votes').html('votes count: <%= @book.votes_count %>')
+$('#how-vote').remove()
