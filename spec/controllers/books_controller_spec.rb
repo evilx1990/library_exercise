@@ -131,94 +131,133 @@ describe BooksController, type: :controller do
   end
 
   describe 'POST #vote' do
-    subject! { post :vote, xhr: :js, params: { id: book.id, rating: 10} }
+    context 'user voted?' do
+      context 'false' do
+        subject! { post :vote, xhr: :js, params: { id: book.id, rating: 10} }
 
-    it 'has a 200 code' do
-      expect(response).to have_http_status(200)
-    end
+        it 'has a 200 code' do
+          expect(response).to have_http_status(200)
+        end
 
-    it 'render vote template' do
-      expect(response).to render_template(:vote)
-    end
+        it 'render vote template' do
+          expect(response).to render_template(:vote)
+        end
 
-    it 'assign @book' do
-      expect(assigns(:book)) == book
-    end
+        it 'assign @book' do
+          expect(assigns(:book)) == book
+        end
 
-    it 'create vote record into DB' do
-      expect(Vote.count) == 1
-    end
+        it 'create vote record into DB' do
+          expect(Vote.count) == 1
+        end
 
-    it 'update book rating' do
-      expect(assigns(:book).rating) == 10
+        it 'update book rating' do
+          expect(assigns(:book).rating) == 10
+        end
+      end
+
+      context 'true' do
+        let(:book)  { create(:book_with_vote, user: @user) }
+        subject! { post :vote, xhr: :js, params: { id: book.id, rating: 10} }
+
+        it 'has a 400 code' do
+          expect(response).to have_http_status(400)
+        end
+
+        it 'do not render vote template' do
+          expect(response).not_to render_template(:vote)
+        end
+      end
     end
   end
 
   describe 'PUT #take' do
-    subject! { put :take, xhr: :js, params: { id: book.id } }
+    context 'if book status equal' do
+      context 'true' do
+        subject! { put :take, xhr: :js, params: { id: book.id } }
 
-    it 'has a 200 code' do
-      expect(response).to have_http_status(200)
-    end
+        it 'has a 200 code' do
+          expect(response).to have_http_status(200)
+        end
 
-    it 'render take template' do
-      expect(response).to render_template(:take)
-    end
+        it 'render take template' do
+          expect(response).to render_template(:take)
+        end
 
-    it 'assign @book' do
-      expect(assigns(:book)) == book
-    end
+        it 'assign @book' do
+          expect(assigns(:book)) == book
+        end
 
-    it 'create history record in db' do
-      expect(History.count) == 1
-    end
+        it 'create history record in db' do
+          expect(History.count) == 1
+        end
 
-    it 'update book status' do
-      expect(assigns(:book).status).to be_falsey
-    end
-
-    context 'if status equal <false> before start action' do
-      let(:book) { create(:out_book) }
-
-      subject! { put :take, xhr: :js, params: { id: book.id } }
-
-      it 'has a 200 code' do
-        expect(response).to have_http_status(200)
+        it 'update book status' do
+          expect(assigns(:book).status).to be_falsey
+        end
       end
 
-      it 'render take_error template' do
-        expect(response).to render_template(:take_error)
+      context 'false' do
+        let(:book) { create(:out_book) }
+
+        subject! { put :take, xhr: :js, params: { id: book.id } }
+
+        it 'has a 400 code' do
+          expect(response).to have_http_status(400)
+        end
+
+        it 'do not render take template' do
+          expect(response).not_to render_template(:take)
+        end
       end
     end
   end
 
   describe 'PUT #return' do
-    let(:book) { create(:history, user: @user).book }
+    context 'if book status equal' do
+      context 'false' do
+        let(:book) { create(:history, user: @user).book }
 
-    subject! { put :return, xhr: :js, params: { id: book.id } }
+        subject! { put :return, xhr: :js, params: { id: book.id } }
 
-    it 'has a 200 code' do
-      expect(response).to have_http_status(200)
-    end
+        it 'has a 200 code' do
+          expect(response).to have_http_status(200)
+        end
 
-    it 'render return template' do
-      expect(response).to render_template(:return)
-    end
+        it 'render return template' do
+          expect(response).to render_template(:return)
+        end
 
-    it 'assign @book' do
-      expect(assigns(:book)) == book
-    end
+        it 'assign @book' do
+          expect(assigns(:book)) == book
+        end
 
-    it 'assign @record' do
-      expect(assigns(:record)) == book.history.first
-    end
+        it 'assign @record' do
+          expect(assigns(:record)) == book.history.first
+        end
 
-    it 'history record must have returned timestamp' do
-      expect(assigns(:record).returned_in).to be_truthy
-    end
+        it 'history record must have returned timestamp' do
+          expect(assigns(:record).returned_in).to be_truthy
+        end
 
-    it 'book record must have status <true>' do
-      expect(assigns(:book).status).to be_truthy
+        it 'book record must have status <true>' do
+          expect(assigns(:book).status).to be_truthy
+        end
+      end
+
+      context 'true' do
+        let(:book) { create(:history_returned_book, user: @user).book }
+
+        subject! { put :return, xhr: :js, params: { id: book.id } }
+
+        it 'has a 400 code' do
+          expect(response).to have_http_status(400)
+        end
+
+        it 'do not render return template' do
+          expect(response).not_to render_template(:return)
+        end
+      end
     end
   end
 

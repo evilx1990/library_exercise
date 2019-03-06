@@ -48,4 +48,16 @@ describe Vote, type: :model do
       expect(Vote).to have_index_for(book: 1)
     end
   end
+
+  context 'Callbacks' do
+    context 'before save' do
+      describe '#normalize_rating' do
+        let(:vote_more_than_ten)  { build(:vote, :hundred) }
+        let(:vote_less_then_one)  { }
+        let(:vote_invalid)          { build(:vote, :invalid) }
+
+        i
+      end
+    end
+  end
 end

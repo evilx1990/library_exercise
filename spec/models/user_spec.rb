@@ -80,13 +80,35 @@ describe User, type: :model do
   end
 
   context 'Methods' do
-    describe '#book?' do
-      let(:history) { create(:history, :returned) }
+    describe '#read?' do
+      let(:history) { create(:history_returned_book) }
       let(:user)    { history.user }
       let(:book)    { history.book }
 
       it 'user read book' do
         expect(user.read?(book)).to be_truthy
+      end
+    end
+
+    describe '#generate_authentication_token' do
+      it 'must returned unique token' do
+        create_list(:user, 10)
+        token = build(:user).send(:generate_authentication_token)
+
+        expect(User.where(authentication_token: token).first).to be_falsey
+      end
+    end
+  end
+
+  context 'Callbacks' do
+    context 'before save' do
+      describe '#ensure_authentication_token' do
+        let(:user) { build(:user) }
+
+        it 'token must be present after save' do
+          user.save
+          expect(user.authentication_token).to be_truthy
+        end
       end
     end
   end

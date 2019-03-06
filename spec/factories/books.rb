@@ -31,7 +31,7 @@ FactoryBot.define do
       after(:create) do |book|
         create_list(:comment, 3, book: book, user: book.user)
         create_list(:vote, 3, book: book, user: book.user)
-        create_list(:history, 3, :returned, book: book)
+        create_list(:history_returned_book, 3, book: book)
         create(:history, book: book, user: book.user)
       end
     end

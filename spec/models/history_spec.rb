@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe History, type: :model do
-  let(:history) { create(:history, :returned) }
+  let(:history) { create(:history_returned_book) }
 
   it 'to be mongoid document' do
     expect(History).to be_mongoid_document

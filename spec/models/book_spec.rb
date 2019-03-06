@@ -91,13 +91,13 @@ describe Book, type: :model do
 
   context 'Methods' do
     describe '#update_rating' do
-      let!(:vote1) { create(:vote, :null, book: book) }
+      let!(:vote1) { create(:vote, :one, book: book) }
       let!(:vote2) { create(:vote, :five, book: book) }
       let!(:vote3) { create(:vote, :ten, book: book) }
 
       it 'will update the rating' do
         book.update_rating
-        expect(book.rating).to eql(5.0)
+        expect(book.rating).to eql(5.3)
       end
     end
 

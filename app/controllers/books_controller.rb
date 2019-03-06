@@ -26,25 +26,31 @@ class BooksController < ApplicationController
   end
 
   def vote
-    return if @book.voted?(current_user)
-
-    @book.votes.create!(rating: params[:rating], user: current_user)
-    @book.update_rating
+    if @book.voted?(current_user)
+      head :bad_request
+    else
+      @book.votes.create!(rating: params[:rating], user: current_user)
+      @book.update_rating
+    end
   end
 
   def take
-    return unless @book.status
-
-    @book.history.create!(user: current_user)
-    @book.update(status: false)
+    if !@book.status
+      head :bad_request
+    else
+      @book.history.create!(user: current_user)
+      @book.update(status: false)
+    end
   end
 
   def return
-    return if @book.status
-
-    @record = @book.history.where(user: current_user, returned_in: nil).first
-    @record.update_attribute(:returned_in, Time.now)
-    @book.update_attribute(:status, true)
+    if @book.status
+      head :bad_request
+    else
+      @record = @book.history.where(user: current_user, returned_in: nil).first
+      @record.update_attribute(:returned_in, Time.now)
+      @book.update_attribute(:status, true)
+    end
   end
 
   def destroy
