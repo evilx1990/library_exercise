@@ -40,6 +40,8 @@ class BooksController < ApplicationController
   end
 
   def return
+    return if @book.status
+
     @record = @book.history.where(user: current_user, returned_in: nil).first
     @record.update_attribute(:returned_in, Time.now)
     @book.update_attribute(:status, true)
