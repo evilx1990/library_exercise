@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :book, class: 'Book' do
+  factory :book do
     image       { File.open('spec/support/9780099549482.jpg') }
     title       { 'Some title' }
     author      { 'Some author' }
@@ -11,7 +11,7 @@ FactoryBot.define do
 
     factory :out_book do
       status    { false }
-      after(:create) { |book| create(:history, book: book) }
+      after(:create) { |book| create(:history, book: book, user: book.user) }
     end
 
     factory :book_with_vote do
@@ -20,6 +20,7 @@ FactoryBot.define do
 
 
     factory :book_with_history do
+      status    { false }
       after(:create) { |book| create(:history, book: book, user: book.user) }
     end
 

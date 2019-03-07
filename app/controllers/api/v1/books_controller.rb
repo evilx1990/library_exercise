@@ -6,9 +6,9 @@ module Api
       before_action :find_book, except: %i[index]
 
       def index
-        @books = Book.all
+        @books = Book.order_by(popularity: :desc)
 
-        status_ok
+        render status: :ok
       end
 
       def show

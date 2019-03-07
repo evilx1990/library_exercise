@@ -11,7 +11,7 @@ describe BooksController, type: :controller do
   end
 
   describe 'GET #index' do
-    let(:book)  { Book.new }
+    let(:book)  { build(:book) }
     let(:books) { create_list(:book, 3) }
 
     subject! { get :index }

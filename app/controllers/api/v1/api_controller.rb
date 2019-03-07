@@ -3,7 +3,6 @@
 module Api
   module V1
     class ApiController < ActionController::API
-      # This is our new function that comes before Devise's one
       before_action :authenticate_user_from_token!, except: :token
       before_action :authenticate_user!
       before_action :set_default_format

@@ -53,10 +53,23 @@ describe Vote, type: :model do
     context 'before save' do
       describe '#normalize_rating' do
         let(:vote_more_than_ten)  { build(:vote, :hundred) }
-        let(:vote_less_then_one)  { }
-        let(:vote_invalid)          { build(:vote, :invalid) }
+        let(:vote_less_then_one)  { build(:vote, :negative) }
+        let(:vote_invalid)        { build(:vote, :invalid) }
 
-        i
+        it 'vote more than ten' do
+          vote_more_than_ten.save
+          expect(vote_more_than_ten.rating).to eql(10)
+        end
+
+        it 'vote less than one' do
+          vote_less_then_one.save
+          expect(vote_less_then_one.rating).to eql(1)
+        end
+
+        it 'vote invalid' do
+          vote_invalid.save
+          expect(vote_invalid.rating).to eql(1)
+        end
       end
     end
   end

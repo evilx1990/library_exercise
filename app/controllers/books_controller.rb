@@ -54,7 +54,7 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    return unless @book.destroy
+    @book.destroy
 
     if params[:redirect].eql?('true')
       redirect_to books_path

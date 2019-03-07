@@ -24,6 +24,7 @@ describe 'Vote range input', type: :feature do
     before do
       find('input[type=range]').click
       find('#rating > a').click
+      sleep(0.5)
     end
 
     it 'vote' do
