@@ -1,5 +1,6 @@
 $(window).on("load turbolinks:load resize", ->
   # Carousel height
+
   carouselImages =  document.querySelectorAll('.carousel-content .book-image')
   carouselDesc = document.querySelectorAll('.carousel-content .book-description')
 
@@ -25,9 +26,6 @@ $(window).on("load turbolinks:load resize", ->
   carouselItems = document.querySelectorAll('.carousel-slide')
   for i in carouselItems
     $(i).height(max)
-
-  $(".right").css("pointer-events", "auto")
-  $(".left").css("pointer-events", "auto")
 )
 
 $(document).on("load turbolinks:load", ->
@@ -38,7 +36,7 @@ $(document).on("load turbolinks:load", ->
         return i
     return -1
 
-  points = document.getElementsByClassName('carousel-slide')
+  points = document.querySelector('.carousel-slide')
 
   changeSlide = (direction) ->
     current = currentPoint()

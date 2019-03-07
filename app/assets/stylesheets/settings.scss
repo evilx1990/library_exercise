@@ -1,0 +1,18 @@
+.settings-icon {
+  width: 24px;
+}
+
+// setting icon: remove arrow
+.dropdown-toggle::before {
+  content: none !important;
+}
+
+#dropdown-width {
+  min-width: 50px !important;
+}
+
+.rating-icon {
+  display: inline-block;
+  width: 15px;
+  margin-right: 10px;
+}

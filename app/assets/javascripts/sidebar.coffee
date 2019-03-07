@@ -1,4 +1,4 @@
-$(document).on("turbolinks:load", ->
+$(document).on("load turbolinks:load", ->
   $('.toggle').on('click', ->
     $('aside').addClass('switched-bar')
     $('nav, article, footer').addClass('switched-main')

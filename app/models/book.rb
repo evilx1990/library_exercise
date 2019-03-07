@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Book
+class Book #:nodoc:
   include Mongoid::Document
   include Mongoid::Timestamps
 
@@ -12,12 +12,12 @@ class Book
   field :rating,          type: Float,    default: 0.0
   field :votes_count,     type: Integer,  default: 0
   field :taken_count,     type: Integer,  default: 0
-  field :popularity,      type: Integer,  default: 0  # sum votes & taken(auto-update)
+  field :popularity,      type: Integer,  default: 0 # sum votes & taken(auto-update)
 
   belongs_to  :user
   has_many    :votes,     dependent: :destroy
   has_many    :comments,  dependent: :destroy
-  has_many    :history,   dependent: :destroy,  class_name: 'History'
+  has_many    :history,   dependent: :destroy, class_name: 'History'
 
   mount_uploader :image,  ImageUploader
 
@@ -29,8 +29,8 @@ class Book
 
     votes.each { |vote| sum += vote.rating }
 
-    self.rating = (sum / self.votes_count).round(1)
-    self.save
+    self.rating = (sum / votes_count).round(1)
+    save
   end
 
   def voted?(user)
