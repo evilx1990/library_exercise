@@ -2,9 +2,9 @@
 
 module Api
   module V1
-    class ApiController < ActionController::API
+    class ApiController < ActionController::API # :nodoc:
       before_action :authenticate_user_from_token!, except: :token
-      before_action :authenticate_user!
+      before_action :authenticate_user!, except: :token
       before_action :set_default_format
 
       private
@@ -18,6 +18,8 @@ module Api
         # timing attacks.
         if user && Devise.secure_compare(user.authentication_token, params[:token])
           sign_in user, store: false
+        else
+          render json: { error: 'Invalid email or token' }, status: :bad_request
         end
       end
 

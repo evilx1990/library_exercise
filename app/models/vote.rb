@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Vote
+class Vote # :nodoc:
   include Mongoid::Document
 
   field :rating,  type: Integer,  default: 0

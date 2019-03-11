@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class User
-    include Mongoid::Document
+class User # :nodoc:
+  include Mongoid::Document
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -19,8 +19,8 @@ class User
   field :remember_created_at,     type: Time
   ## Token Authenticatable
   field :authentication_token
-  
-  has_many  :books,   dependent: :destroy
+
+  has_many  :books, dependent: :destroy
   has_many  :votes
   has_many  :comments
   has_many  :history, class_name: 'History'
@@ -38,6 +38,10 @@ class User
     if authentication_token.blank?
       self.authentication_token = generate_authentication_token
     end
+  end
+
+  def name
+    first_name + ' ' + last_name
   end
 
   private

@@ -1,5 +1,5 @@
 if @book
-  json.id           @book.id
+  json.id           @book['_id'].to_s
   json.image        request.protocol + request.host_with_port + @book.image.url
   json.author       @book.author
   json.title        @book.title

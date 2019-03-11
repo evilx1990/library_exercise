@@ -1,48 +1,51 @@
 $(window).on("load turbolinks:load resize", ->
   # Carousel height
-
-  carouselImages =  document.querySelectorAll('.carousel-content .book-image')
-  carouselDesc = document.querySelectorAll('.carousel-content .book-description')
+  carouselImages =  $('.carousel-content .book-image')
+  carouselDesc = $('.carousel-content .book-description')
 
   # Find point with max height && get him value
   maxHeightImg = $(carouselImages[0]).height()
-  for i in [0..carouselImages.length - 1]
-    if maxHeightImg < $(carouselImages[i + 1]).height()
-      maxHeightImg = $(carouselImages[i + 1]).height()
+  carouselImages.each(->
+    if maxHeightImg < $(this).height()
+      maxHeightImg = $(this).height()
+  )
 
   maxHeightDesc = $(carouselDesc[0]).height()
-  for i in [0..carouselDesc.length - 1]
-    if maxHeightDesc < $(carouselDesc[i + 1]).height()
-      maxHeightDesc = $(carouselDesc[i + 1]).height()
+  carouselDesc.each(->
+    if maxHeightDesc < $(this).height()
+      maxHeightDesc = $(this).height()
+  )
 
-  max = if maxHeightImg > maxHeightDesc
-          maxHeightImg
-        else
-          maxHeightDesc
+  max = if maxHeightImg > maxHeightDesc then maxHeightImg else maxHeightDesc
 
   # Set new height for all points
   $('.carousel-content').height(max)
 
-  carouselItems = document.querySelectorAll('.carousel-slide')
-  for i in carouselItems
-    $(i).height(max)
+  carouselItems = $('.carousel-slide')
+  $(carouselItems).each(->
+    $(this).height(max)
+  )
 )
 
 $(document).on("load turbolinks:load", ->
   # Carousel navigation buttons
-  currentPoint = ->
-    for i in [0...points.length]
-      if $(points[i]).hasClass('active-slide')
-        return i
-    return -1
 
-  points = document.querySelector('.carousel-slide')
+  currentPoint = ->
+    point = -1
+    $('.carousel-slide').each((index)->
+      if $(this).hasClass('active-slide')
+        point = index
+    )
+    console.log(point)
+    return point
+
 
   changeSlide = (direction) ->
     current = currentPoint()
     if current == -1
       return false
 
+    points = $('.carousel-slide')
     $(points[current]).removeClass('active-slide')
     $(points[current]).addClass('current-slide')
     $(points[current]).on('transitionend', ->

@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class BooksController < ApiController
+    class BooksController < ApiController # :nodoc:
       before_action :find_book, except: %i[index]
 
       def index
@@ -15,7 +15,7 @@ module Api
         if @book
           render status: :found
         else
-          render json: { status: 'Not found' }, status: :not_found
+          render json: { message: '404:Not found' }, status: :not_found
         end
       end
 
@@ -60,11 +60,11 @@ module Api
       end
 
       def status_bad_request
-        render json: { status: '400:Bad request' }, status: :bad_request
+        render json: { message: '400:Bad request' }, status: :bad_request
       end
 
       def status_ok
-        render json: { status: '200:Ok' }, status: :ok
+        render json: { message: '200:Ok' }, status: :ok
       end
     end
   end

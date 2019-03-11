@@ -7,7 +7,7 @@
   .col-7.col-sm-8.book-description
     .author
       %small
-        =book.author.gsub("\n", '<br/>').html_safe
+        =book.author
     %hr/
     .title
       %small
@@ -16,17 +16,13 @@
     .status
       %small
         status:&nbsp
-        -if book.status
-          %span{ style: 'color: green;' }
-            In
-        -else
-          %span{ style: 'color: gray;' }
-            Out
+        %span{ class: book.status ? 'text-success' : 'text-danger' }
+          =book.status ? 'In' : 'Out'
+        -unless book.status
           .last-reader
             read now:&nbsp
-            =book.history.last.user.first_name
-            =book.history.last.user.last_name
+            =book.history.last.user.name
     %hr/
     -if current_user.read?(book)
-      %span{ style: 'color: green;' }
+      %span.text-success
         read

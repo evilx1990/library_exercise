@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MostPopularUpdateJob < ApplicationJob
+class MostPopularUpdateJob < ApplicationJob # :nodoc:
   queue_as :popularity
 
   after_perform do

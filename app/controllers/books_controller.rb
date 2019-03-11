@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BooksController < ApplicationController
+class BooksController < ApplicationController # :nodoc:
   before_action :find_book, except: %i[index create]
 
   def index
@@ -35,7 +35,7 @@ class BooksController < ApplicationController
   end
 
   def take
-    if !@book.status
+    unless @book.status
       head :bad_request
     else
       @book.history.create!(user: current_user)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CommentsController < ApplicationController
+class CommentsController < ApplicationController # :nodoc:
   before_action :find_book
 
   def index

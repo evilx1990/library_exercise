@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Books settings', type: :feature do
+describe 'Books settings' do
   before do
     create(:book)
     login_as(create(:user), scope: :user)

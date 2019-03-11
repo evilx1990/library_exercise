@@ -2,14 +2,14 @@
 
 module Api
   module V1
-    class UsersController < ApiController
+    class UsersController < ApiController # :nodoc:
       def token
-        user = User.find_by(email: params[:email])
+        @user = User.find_by(email: params[:email])
 
-        if user&.valid_password?(params[:password])
-          render json: { token: user.authentication_token }, status: :found
+        if @user&.valid_password?(params[:password].to_s)
+          render json: { token: @user.authentication_token }, status: :found
         else
-          render json: { status: 'Not found' }, status: :not_found
+          render json: { message: '404:Not found' }, status: :not_found
         end
       end
     end

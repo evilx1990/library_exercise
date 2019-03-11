@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class History
+class History # :nodoc:
   include Mongoid::Document
 
   field :taken_in,    type: Time,   default: ->{ Time.now }
@@ -9,6 +9,6 @@ class History
   belongs_to  :user
   belongs_to  :book, counter_cache: :taken_count
 
-  index({ user: 1 } )
-  index({ book: 1 } )
+  index({ user: 1 })
+  index({ book: 1 })
 end
