@@ -1,52 +1,71 @@
-# Library exercise
+### Library
 
-Test exercise for Rails developers.
-First of all - this is test task which purpose is to check the level of candidate knowledge and process of thinking.
-So don't be upset if you have not finished. Commit and push regularly so i can see how you think. This is important! Do not push whole app in the one commit.
-Be creative, some details are missing. The way you deal with them will also be a score for your final result.
+Приложение представляет собой имитацию работы книжной библиотеки.
+Прежде всего пользователю необходимо зарегистрироваться и залогиниться, чтобы получить доступ к книгам.
 
-So, imagine you have an own library and you want a site to see what books you have, how many are taken, the status, history etc.
+После аутентификации у пользователя появляются возможности:
+- Просмотреть список всех книг(включая список самых популярных книг)
+- Добавить новую книгу
+- Отредактировать/Удалить существующую книгу
+- Взять/Вернуть книгу(Когда книга выдана -для других пользователей она становится недоступной. В списке книг в описании будет отображено имя пользователя, который она была выдана) 
+- Поставить оценку книге(оценка ставится один раз, потом ее невозможно изменить/отменить)
+- Оставить комментарий
+- Просмотреть историю книги
 
-Follow current technology stack:
-Ruby 2.4, Rails 5+, Mysql/PostreSQL/MongoDB(mongo is preferred), Bootstrap, Rspec.
-  Pages should not be 'responsive', just make them look nice on mobile devices.
-# What should you do
+Из особенностей хотелось бы отметить:
+- Список популярных книг реализован в виде карусели
+- Удаление книги из списка, возможность Взять/Вернуть книгу без перезагрузки страницы
+- В приложении реализовано небольшое API
 
-##### First of all, fork it.
-1. Books page. The list with all the books, 20 per page. Shows basic info:
 
-    ![Example](app/assets/images/lb.jpeg)
 
-    * Image
-    * Book name - this is a link to book /show page.
-    * Author
-    * Status (status can be in/out). If status is out then display user name who took a book.
-    * Edit, delete and create new book.
-    Top 5 books based on likes count and taken count. Top books are displayed regardless of pagination.
-    
-1. Book page. Verbose information about a book.
+API:
+Для начала работы с API сначала необходимо создать пользователя на сайте.
+Далее получить token пользователя для формирования запросов:
+GET:	libraryexercise.pp.ua/api/v1/users/token?email=USER_EMAIL&password=USER_PASSWORD
+Если данные введены корректно, будет возвращен token в виде:	
+token: USER_TOKEN
 
-    ![Example](app/assets/images/lb1.jpeg)
+Получить список всех книг(список отсортирован по популярности, сначала популярные)
+GET:	libraryexercise.pp.ua/api/v1/books?email=USER_EMAIL&token=USER_TOKEN
+Пример ответа:
 
-    * Image
-    * Name
-    * Description
-    * Likes counter
-    * Author
-    * Status
-    * Comments
-    * History    
-    
-    History includes: name of user who took a book, when book has been taked, when returned back.    
-    User allowed to comment, edit, delete, like, take or return a book.
+[
+    {
+        "id": "5c8113fe61dbb07062b698a4",
+        "author": "Raynor Winn",
+        "title": "The Salt Path : The Sunday Times bestseller, shortlisted for the 2018 Costa Biography Award & The Wainwright Prize",
+        "status": true,
+        "popularity": 7
+    },
+…more books...
+]
 
-1. Book form. Nothing to say more here.
 
-# What we expect
-We expect as much functionality as you can do with established time for you. **Do not try to cheat and spend more time.** Quality of code/work is more important then quantity of work done. 
-#### Will be a huge plus but not necessary:
-* Test coverage with rspec.
-* Respond with json. Serializers are preferred.
-* Bootstrap components like modal windows, panels etc. including mobile and desktop grid.
-* Delete, take, return, like book without page reloading.
-* Book rating (any formula)
+Получить книгу по id:
+GET: libraryexercise.pp.ua/api/v1/books/BOOK_ID?email=USER_EMAIL&token=USER_TOKEN
+Пример ответа:
+
+{
+    "id": "5c8113fe61dbb07062b698a4",
+    "image": IMAGE_URL
+    "author": "Raynor Winn",
+    "title": "The Salt Path : The Sunday Times bestseller, shortlisted for the 2018 Costa Biography Award & The Wainwright Prize\n",
+    "description": " …Some descpirtion… ",
+    "status": true,
+    "rating": 0,
+    "vote_count": 0,
+    "taken_count": 7,
+    "popularity": 7
+}
+
+Взять книгу:
+PUT:	libraryexercise.pp.ua/api/v1/books/BOOK_ID/take?email=USER_EMAIL&token=USER_TOKEN
+Взять можно только книгу со статусом true
+
+Вернуть книгу:
+PUT:	libraryexercise.pp.ua/api/v1/books/BOOK_ID/return?email=USER_EMAIL&token=USER_TOKEN
+
+Поставить оценку:
+POST:	libraryexercise.pp.ua/api/v1/books/BOOK_ID/vote?rating=YOUR_RATING&email=USER_EMAIL&token=USER_TOKEN
+
