@@ -19,17 +19,21 @@
 
 
 
-API:
+### API:
 Для начала работы с API сначала необходимо создать пользователя на сайте.
 Далее получить token пользователя для формирования запросов:
+```
 GET:	libraryexercise.pp.ua/api/v1/users/token?email=USER_EMAIL&password=USER_PASSWORD
+```
 Если данные введены корректно, будет возвращен token в виде:	
 token: USER_TOKEN
-
+***
 Получить список всех книг(список отсортирован по популярности, сначала популярные)
-GET:	libraryexercise.pp.ua/api/v1/books?email=USER_EMAIL&token=USER_TOKEN
+```
+GET:    libraryexercise.pp.ua/api/v1/books?email=USER_EMAIL&token=USER_TOKEN
+```
 Пример ответа:
-
+```json
 [
     {
         "id": "5c8113fe61dbb07062b698a4",
@@ -37,15 +41,16 @@ GET:	libraryexercise.pp.ua/api/v1/books?email=USER_EMAIL&token=USER_TOKEN
         "title": "The Salt Path : The Sunday Times bestseller, shortlisted for the 2018 Costa Biography Award & The Wainwright Prize",
         "status": true,
         "popularity": 7
-    },
-…more books...
+    }
 ]
-
+```
 
 Получить книгу по id:
+```
 GET: libraryexercise.pp.ua/api/v1/books/BOOK_ID?email=USER_EMAIL&token=USER_TOKEN
+```
 Пример ответа:
-
+```json
 {
     "id": "5c8113fe61dbb07062b698a4",
     "image": IMAGE_URL
@@ -58,14 +63,20 @@ GET: libraryexercise.pp.ua/api/v1/books/BOOK_ID?email=USER_EMAIL&token=USER_TOKE
     "taken_count": 7,
     "popularity": 7
 }
-
+```
+***
 Взять книгу:
+```
 PUT:	libraryexercise.pp.ua/api/v1/books/BOOK_ID/take?email=USER_EMAIL&token=USER_TOKEN
+```
 Взять можно только книгу со статусом true
-
+***
 Вернуть книгу:
+```
 PUT:	libraryexercise.pp.ua/api/v1/books/BOOK_ID/return?email=USER_EMAIL&token=USER_TOKEN
-
+```
+***
 Поставить оценку:
+```
 POST:	libraryexercise.pp.ua/api/v1/books/BOOK_ID/vote?rating=YOUR_RATING&email=USER_EMAIL&token=USER_TOKEN
-
+```
