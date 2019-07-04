@@ -1,38 +1,37 @@
 ### Library
 
-Приложение представляет собой имитацию работы книжной библиотеки.
-Прежде всего пользователю необходимо зарегистрироваться и залогиниться, чтобы получить доступ к книгам.
+The application is a simulation of the work of the book library.
+First of all, the user needs to register and log in to access the books.
 
-После аутентификации у пользователя появляются возможности:
-- Просмотреть список всех книг(включая список самых популярных книг)
-- Добавить новую книгу
-- Отредактировать/Удалить существующую книгу
-- Взять/Вернуть книгу(Когда книга выдана -для других пользователей она становится недоступной. В списке книг в описании будет отображено имя пользователя, который она была выдана) 
-- Поставить оценку книге(оценка ставится один раз, потом ее невозможно изменить/отменить)
-- Оставить комментарий
-- Просмотреть историю книги
+After authentication, the user has the opportunity:
+- View a list of all books (including a list of the most popular books)
+- Add new book
+- Edit / Delete existing book
+- Take / Return a book (When a book is issued, it becomes unavailable for other users. The name of the user that was issued will be displayed in the list of books in the description)
+- Rate a book (assessment is made once, then it can not be changed/canceled)
+- Leave a comment
+- Viewbook history
 
-Из особенностей хотелось бы отметить:
-- Список популярных книг реализован в виде карусели
-- Удаление книги из списка, возможность Взять/Вернуть книгу без перезагрузки страницы
-- В приложении реализовано небольшое API
-
+Of the features I would like to note:
+- A list of popular books implemented in the form of a carousel
+- Removing a book from the list, the ability to Take / Return a book without reloading the page
+- The application has a small API
 
 
 ### API:
-Для начала работы с API сначала необходимо создать пользователя на сайте.
-Далее получить token пользователя для формирования запросов:
+To get started with the API, you must first create a user on the site.
+Next, get the token user to form requests:
 ```
 GET:	libraryexercise.pp.ua/api/v1/users/token?email=USER_EMAIL&password=USER_PASSWORD
 ```
-Если данные введены корректно, будет возвращен token в виде:	
+If the data is entered correctly, it will be returned the user token:
 token: USER_TOKEN
 ***
-Получить список всех книг(список отсортирован по популярности, сначала популярные)
+Get a list of all books (sorted by popularity, first popular)
 ```
 GET:    libraryexercise.pp.ua/api/v1/books?email=USER_EMAIL&token=USER_TOKEN
 ```
-Пример ответа:
+Sample response:
 ```json
 [
     {
@@ -45,15 +44,15 @@ GET:    libraryexercise.pp.ua/api/v1/books?email=USER_EMAIL&token=USER_TOKEN
 ]
 ```
 
-Получить книгу по id:
+Get the book by id:
 ```
 GET: libraryexercise.pp.ua/api/v1/books/BOOK_ID?email=USER_EMAIL&token=USER_TOKEN
 ```
-Пример ответа:
+Sample response:
 ```json
 {
     "id": "5c8113fe61dbb07062b698a4",
-    "image": IMAGE_URL
+    "image": "IMAGE_URL",
     "author": "Raynor Winn",
     "title": "The Salt Path : The Sunday Times bestseller, shortlisted for the 2018 Costa Biography Award & The Wainwright Prize\n",
     "description": " …Some descpirtion… ",
@@ -65,18 +64,18 @@ GET: libraryexercise.pp.ua/api/v1/books/BOOK_ID?email=USER_EMAIL&token=USER_TOKE
 }
 ```
 ***
-Взять книгу:
+Take the book:
 ```
 PUT:	libraryexercise.pp.ua/api/v1/books/BOOK_ID/take?email=USER_EMAIL&token=USER_TOKEN
 ```
-Взять можно только книгу со статусом true
+You can only take the book with the status of true
 ***
-Вернуть книгу:
+Return the book:
 ```
 PUT:	libraryexercise.pp.ua/api/v1/books/BOOK_ID/return?email=USER_EMAIL&token=USER_TOKEN
 ```
 ***
-Поставить оценку:
+Rate the book:
 ```
 POST:	libraryexercise.pp.ua/api/v1/books/BOOK_ID/vote?rating=YOUR_RATING&email=USER_EMAIL&token=USER_TOKEN
 ```
