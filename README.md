@@ -1,3 +1,6 @@
+### Source task: 
+[Readme](https://github.com/drkmen/library_exercise/blob/master/README.md)
+
 ### Library
 
 The application is a simulation of the work of the book library.
